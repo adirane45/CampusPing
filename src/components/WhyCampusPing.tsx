@@ -121,7 +121,7 @@ export default function WhyCampusPing() {
               <div className="flex items-start justify-between mb-4">
                 <div className="text-3xl">{reason.icon}</div>
                 <div className="text-right">
-                  <div className={`text-2xl font-black gradient-text`}>{reason.stat}</div>
+                  <div className="text-2xl font-black gradient-text">{reason.stat}</div>
                   <div className="text-slate-400 text-xs">{reason.statLabel}</div>
                 </div>
               </div>
