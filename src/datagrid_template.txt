@@ -1,0 +1,220 @@
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="WebApplication2.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>DataGrid and DataList Editing</title>
+
+    <style>
+        .grid {
+            border-collapse: collapse;
+            width: 600px;
+        }
+
+        .grid th {
+            background-color: #444;
+            color: white;
+            padding: 8px;
+        }
+
+        .grid td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .item {
+            border: 1px solid #ccc;
+            width: 250px;
+            padding: 15px;
+            margin: 10px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+    <div class="header">
+        Student Management
+    </div>
+
+    <h3>1. DataGrid Editing</h3>
+
+    <asp:DataGrid ID="dgStudents"
+        runat="server"
+        AutoGenerateColumns="False"
+        CssClass="grid"
+        OnEditCommand="dgStudents_EditCommand"
+        OnCancelCommand="dgStudents_CancelCommand"
+        OnUpdateCommand="dgStudents_UpdateCommand">
+
+        <Columns>
+
+            <asp:BoundColumn
+                DataField="ID"
+                HeaderText="ID"
+                ReadOnly="True" />
+
+            <asp:BoundColumn
+                DataField="Name"
+                HeaderText="Name" />
+
+            <asp:BoundColumn
+                DataField="Course"
+                HeaderText="Course" />
+
+            <asp:EditCommandColumn
+                EditText="Edit"
+                UpdateText="Update"
+                CancelText="Cancel" />
+
+        </Columns>
+
+    </asp:DataGrid>
+
+    <br /><br />
+
+    <h3>2. DataList Editing</h3>
+
+    <asp:DataList ID="dlStudents"
+        runat="server"
+        RepeatDirection="Horizontal"
+        RepeatColumns="3">
+
+        <HeaderTemplate>
+            <h4>Student List</h4>
+        </HeaderTemplate>
+
+        <ItemTemplate>
+
+            <div class="item">
+
+                <b>ID:</b>
+                <%# Eval("ID") %>
+
+                <br /><br />
+
+                <b>Name:</b>
+                <%# Eval("Name") %>
+
+                <br /><br />
+
+                <b>Course:</b>
+                <%# Eval("Course") %>
+
+            </div>
+
+        </ItemTemplate>
+
+        <SeparatorTemplate>
+            <br />
+        </SeparatorTemplate>
+
+        <FooterTemplate>
+            <br />
+            End of Student List
+        </FooterTemplate>
+
+    </asp:DataList>
+
+</form>
+</body>
+</html>
+
+
+
+
+using System;
+using System.Data;
+
+namespace WebApplication2
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                BindData();
+            }
+        }
+
+        private DataTable GetStudents()
+        {
+            DataTable table = new DataTable();
+
+            table.Columns.Add("ID");
+            table.Columns.Add("Name");
+            table.Columns.Add("Course");
+
+            table.Rows.Add("1", "Rahul", "MCA");
+            table.Rows.Add("2", "Aditya", "MCA");
+            table.Rows.Add("3", "Priya", "MCA");
+            table.Rows.Add("4", "Amit", "MCA");
+            table.Rows.Add("5", "Sneha", "MCA");
+
+            return table;
+        }
+
+        private void BindData()
+        {
+            DataTable table = GetStudents();
+
+            dgStudents.DataSource = table;
+            dgStudents.DataBind();
+
+            dlStudents.DataSource = table;
+            dlStudents.DataBind();
+        }
+
+        protected void dgStudents_EditCommand(
+            object source,
+            System.Web.UI.WebControls.DataGridCommandEventArgs e)
+        {
+            dgStudents.EditItemIndex = e.Item.ItemIndex;
+            BindData();
+        }
+
+        protected void dgStudents_CancelCommand(
+            object source,
+            System.Web.UI.WebControls.DataGridCommandEventArgs e)
+        {
+            dgStudents.EditItemIndex = -1;
+            BindData();
+        }
+
+        protected void dgStudents_UpdateCommand(
+            object source,
+            System.Web.UI.WebControls.DataGridCommandEventArgs e)
+        {
+            int index = e.Item.ItemIndex;
+
+            DataTable table = GetStudents();
+
+            table.Rows[index]["Name"] =
+                ((System.Web.UI.WebControls.TextBox)e.Item.Cells[1].Controls[0]).Text;
+
+            table.Rows[index]["Course"] =
+                ((System.Web.UI.WebControls.TextBox)e.Item.Cells[2].Controls[0]).Text;
+
+            dgStudents.EditItemIndex = -1;
+
+            dgStudents.DataSource = table;
+            dgStudents.DataBind();
+
+            dlStudents.DataSource = table;
+            dlStudents.DataBind();
+        }
+    }
+}

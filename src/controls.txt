@@ -1,0 +1,102 @@
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="ControlsDemo.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>List Controls Demonstration</title>
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+    <h2>ASP.NET List Controls</h2>
+
+    <!-- DropDownList -->
+    <asp:Label ID="lblService" runat="server"
+        Text="Select Service:"></asp:Label>
+
+    <asp:DropDownList ID="ddlService" runat="server">
+        <asp:ListItem>Select Service</asp:ListItem>
+        <asp:ListItem>Web Development</asp:ListItem>
+        <asp:ListItem>Cloud Computing</asp:ListItem>
+        <asp:ListItem>Cyber Security</asp:ListItem>
+        <asp:ListItem>Technical Support</asp:ListItem>
+    </asp:DropDownList>
+
+    <br /><br />
+
+    <!-- RadioButtonList -->
+    <asp:Label ID="lblGender" runat="server"
+        Text="Select Gender:"></asp:Label>
+
+    <asp:RadioButtonList ID="rblGender" runat="server">
+        <asp:ListItem>Male</asp:ListItem>
+        <asp:ListItem>Female</asp:ListItem>
+        <asp:ListItem>Other</asp:ListItem>
+    </asp:RadioButtonList>
+
+    <br />
+
+    <!-- CheckBoxList -->
+    <asp:Label ID="lblSkills" runat="server"
+        Text="Select Skills:"></asp:Label>
+
+    <asp:CheckBoxList ID="cblSkills" runat="server">
+        <asp:ListItem>Java</asp:ListItem>
+        <asp:ListItem>Python</asp:ListItem>
+        <asp:ListItem>C#</asp:ListItem>
+        <asp:ListItem>SQL</asp:ListItem>
+    </asp:CheckBoxList>
+
+    <br />
+
+    <asp:Button ID="btnSubmit" runat="server"
+        Text="Submit"
+        OnClick="btnSubmit_Click" />
+
+    <br /><br />
+
+    <asp:Label ID="lblResult" runat="server"
+        ForeColor="Green"></asp:Label>
+
+</form>
+</body>
+</html>
+
+
+
+
+using System;
+using System.Text;
+
+namespace ControlsDemo
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            StringBuilder result = new StringBuilder();
+
+            result.Append("Service: " + ddlService.SelectedItem.Text);
+            result.Append("<br/>");
+
+            result.Append("Gender: " + rblGender.SelectedItem.Text);
+            result.Append("<br/>");
+
+            result.Append("Skills: ");
+
+            foreach (System.Web.UI.WebControls.ListItem item in cblSkills.Items)
+            {
+                if (item.Selected)
+                {
+                    result.Append(item.Text + " ");
+                }
+            }
+
+            lblResult.Text = result.ToString();
+        }
+    }
+}

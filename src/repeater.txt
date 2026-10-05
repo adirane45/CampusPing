@@ -1,0 +1,91 @@
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="RepeaterDemo.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Repeater Control Demo</title>
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+    <h2>Student Details</h2>
+
+    <asp:Repeater ID="rptStudents" runat="server">
+
+        <HeaderTemplate>
+            <table border="1" cellpadding="8">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Course</th>
+                </tr>
+        </HeaderTemplate>
+
+        <ItemTemplate>
+            <tr>
+                <td><%# Eval("ID") %></td>
+                <td><%# Eval("Name") %></td>
+                <td><%# Eval("Course") %></td>
+            </tr>
+        </ItemTemplate>
+
+        <AlternatingItemTemplate>
+            <tr>
+                <td><%# Eval("ID") %></td>
+                <td><%# Eval("Name") %></td>
+                <td><%# Eval("Course") %></td>
+            </tr>
+        </AlternatingItemTemplate>
+
+        <SeparatorTemplate>
+            <tr>
+                <td colspan="3">--------------------------</td>
+            </tr>
+        </SeparatorTemplate>
+
+        <FooterTemplate>
+            </table>
+            <br />
+            End of Student List
+        </FooterTemplate>
+
+    </asp:Repeater>
+
+</form>
+</body>
+</html>
+
+
+
+using System;
+using System.Data;
+
+namespace RepeaterDemo
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                DataTable table = new DataTable();
+
+                table.Columns.Add("ID");
+                table.Columns.Add("Name");
+                table.Columns.Add("Course");
+
+                table.Rows.Add("1", "Rahul", "MCA");
+                table.Rows.Add("2", "Aditya", "MCA");
+                table.Rows.Add("3", "Priya", "MCA");
+                table.Rows.Add("4", "Amit", "MCA");
+
+                rptStudents.DataSource = table;
+                rptStudents.DataBind();
+            }
+        }
+    }
+}

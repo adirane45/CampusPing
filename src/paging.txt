@@ -1,0 +1,169 @@
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="DataGridDemo.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>DataGrid Paging Sorting Filtering</title>
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+    <h2>Student Data</h2>
+
+    Search by Name:
+    <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+
+    <asp:Button ID="btnFilter"
+        runat="server"
+        Text="Filter"
+        OnClick="btnFilter_Click" />
+
+    <asp:Button ID="btnShowAll"
+        runat="server"
+        Text="Show All"
+        OnClick="btnShowAll_Click" />
+
+    <br /><br />
+
+    <asp:DataGrid ID="dgStudents"
+        runat="server"
+        AutoGenerateColumns="False"
+        AllowPaging="True"
+        PageSize="3"
+        AllowSorting="True"
+        OnPageIndexChanged="dgStudents_PageIndexChanged"
+        OnSortCommand="dgStudents_SortCommand"
+        BorderWidth="1">
+
+        <Columns>
+
+            <asp:BoundColumn
+                DataField="ID"
+                HeaderText="ID"
+                SortExpression="ID" />
+
+            <asp:BoundColumn
+                DataField="Name"
+                HeaderText="Name"
+                SortExpression="Name" />
+
+            <asp:BoundColumn
+                DataField="Course"
+                HeaderText="Course"
+                SortExpression="Course" />
+
+            <asp:BoundColumn
+                DataField="City"
+                HeaderText="City"
+                SortExpression="City" />
+
+        </Columns>
+
+    </asp:DataGrid>
+
+</form>
+</body>
+</html>
+
+
+
+
+
+
+using System;
+using System.Data;
+
+
+namespace DataGridDemo
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        private DataTable GetStudents()
+        {
+            DataTable table = new DataTable();
+
+            table.Columns.Add("ID", typeof(int));
+            table.Columns.Add("Name");
+            table.Columns.Add("Course");
+            table.Columns.Add("City");
+
+            table.Rows.Add(1, "Rahul", "MCA", "Jalgaon");
+            table.Rows.Add(2, "Aditya", "MCA", "Pune");
+            table.Rows.Add(3, "Priya", "MCA", "Mumbai");
+            table.Rows.Add(4, "Amit", "MCA", "Nashik");
+            table.Rows.Add(5, "Sneha", "MCA", "Jalgaon");
+            table.Rows.Add(6, "Rohit", "MCA", "Pune");
+            table.Rows.Add(7, "Neha", "MCA", "Mumbai");
+            table.Rows.Add(8, "Karan", "MCA", "Nashik");
+
+            return table;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                BindGrid();
+            }
+        }
+
+        private void BindGrid()
+        {
+            dgStudents.DataSource = GetStudents();
+            dgStudents.DataBind();
+        }
+
+        protected void dgStudents_PageIndexChanged(
+            object source,
+            System.Web.UI.WebControls.DataGridPageChangedEventArgs e)
+        {
+            dgStudents.CurrentPageIndex = e.NewPageIndex;
+            BindGrid();
+        }
+
+        protected void dgStudents_SortCommand(
+            object source,
+            System.Web.UI.WebControls.DataGridSortCommandEventArgs e)
+        {
+            DataTable table = GetStudents();
+
+            table.DefaultView.Sort = e.SortExpression;
+
+            dgStudents.DataSource = table;
+            dgStudents.DataBind();
+        }
+
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            DataTable table = GetStudents();
+
+            string search = txtSearch.Text.Trim();
+
+            if (search != "")
+            {
+                DataView view = table.DefaultView;
+
+                view.RowFilter =
+                    "Name LIKE '%" + search.Replace("'", "''") + "%'";
+
+                dgStudents.DataSource = view;
+                dgStudents.DataBind();
+            }
+            else
+            {
+                BindGrid();
+            }
+        }
+
+        protected void btnShowAll_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            dgStudents.CurrentPageIndex = 0;
+            BindGrid();
+        }
+    }
+}

@@ -1,0 +1,112 @@
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="DataBindingDemo.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Data Binding Demo</title>
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+    <h2>Data Binding Demonstration</h2>
+
+    <h3>1. Hashtable Data Binding</h3>
+
+    <asp:DropDownList ID="ddlHashtable"
+        runat="server">
+    </asp:DropDownList>
+
+    <br /><br />
+
+    <h3>2. ArrayList Data Binding</h3>
+
+    <asp:ListBox ID="lstArrayList"
+        runat="server">
+    </asp:ListBox>
+
+    <br /><br />
+
+    <h3>3. DataTable Data Binding</h3>
+
+    <asp:GridView ID="gvDataTable"
+        runat="server">
+    </asp:GridView>
+
+</form>
+</body>
+</html>
+
+
+
+
+
+using System;
+using System.Collections;
+using System.Data;
+
+namespace DataBindingDemo
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                BindHashtable();
+                BindArrayList();
+                BindDataTable();
+            }
+        }
+
+        // Hashtable
+        private void BindHashtable()
+        {
+            Hashtable data = new Hashtable();
+
+            data.Add("1", "Java");
+            data.Add("2", "Python");
+            data.Add("3", "C#");
+            data.Add("4", "ASP.NET");
+
+            ddlHashtable.DataSource = data;
+            ddlHashtable.DataTextField = "Value";
+            ddlHashtable.DataValueField = "Key";
+            ddlHashtable.DataBind();
+        }
+
+        // ArrayList
+        private void BindArrayList()
+        {
+            ArrayList data = new ArrayList();
+
+            data.Add("Jalgaon");
+            data.Add("Pune");
+            data.Add("Mumbai");
+            data.Add("Nashik");
+
+            lstArrayList.DataSource = data;
+            lstArrayList.DataBind();
+        }
+
+        // DataTable
+        private void BindDataTable()
+        {
+            DataTable table = new DataTable();
+
+            table.Columns.Add("ID");
+            table.Columns.Add("Name");
+            table.Columns.Add("Course");
+
+            table.Rows.Add("1", "Rahul", "MCA");
+            table.Rows.Add("2", "Aditya", "MCA");
+            table.Rows.Add("3", "Priya", "MCA");
+
+            gvDataTable.DataSource = table;
+            gvDataTable.DataBind();
+        }
+    }
+}

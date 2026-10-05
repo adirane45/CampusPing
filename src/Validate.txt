@@ -1,0 +1,168 @@
+Default.aspx
+
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="ServiceRegistration.Default" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title>Service Registration</title>
+</head>
+
+<body>
+<form id="form1" runat="server">
+
+    <h2>Service Registration Form</h2>
+
+    Name:
+    <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+
+    <asp:RequiredFieldValidator
+        ID="rfvName"
+        runat="server"
+        ControlToValidate="txtName"
+        ErrorMessage="Name is required"
+        ForeColor="Red">
+    </asp:RequiredFieldValidator>
+
+    <br /><br />
+
+    Email:
+    <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+
+    <asp:RequiredFieldValidator
+        ID="rfvEmail"
+        runat="server"
+        ControlToValidate="txtEmail"
+        ErrorMessage="Email is required"
+        ForeColor="Red">
+    </asp:RequiredFieldValidator>
+
+    <asp:RegularExpressionValidator
+        ID="revEmail"
+        runat="server"
+        ControlToValidate="txtEmail"
+        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+        ErrorMessage="Enter a valid email"
+        ForeColor="Red">
+    </asp:RegularExpressionValidator>
+
+    <br /><br />
+
+    Mobile:
+    <asp:TextBox ID="txtMobile" runat="server"></asp:TextBox>
+
+    <asp:RequiredFieldValidator
+        ID="rfvMobile"
+        runat="server"
+        ControlToValidate="txtMobile"
+        ErrorMessage="Mobile number is required"
+        ForeColor="Red">
+    </asp:RequiredFieldValidator>
+
+    <br /><br />
+
+    Service:
+    <asp:DropDownList ID="ddlService" runat="server">
+        <asp:ListItem>Select Service</asp:ListItem>
+        <asp:ListItem>Web Development</asp:ListItem>
+        <asp:ListItem>Cloud Service</asp:ListItem>
+        <asp:ListItem>Technical Support</asp:ListItem>
+    </asp:DropDownList>
+
+    <asp:RequiredFieldValidator
+        ID="rfvService"
+        runat="server"
+        ControlToValidate="ddlService"
+        InitialValue="Select Service"
+        ErrorMessage="Select a service"
+        ForeColor="Red">
+    </asp:RequiredFieldValidator>
+
+    <br /><br />
+
+    Gender:
+    <asp:RadioButtonList ID="rblGender" runat="server">
+        <asp:ListItem>Male</asp:ListItem>
+        <asp:ListItem>Female</asp:ListItem>
+    </asp:RadioButtonList>
+
+    <br />
+
+    Skills:
+    <asp:CheckBoxList ID="cblSkills" runat="server">
+        <asp:ListItem>Programming</asp:ListItem>
+        <asp:ListItem>Database</asp:ListItem>
+        <asp:ListItem>Networking</asp:ListItem>
+    </asp:CheckBoxList>
+
+    <br />
+
+    Address:
+    <asp:TextBox ID="txtAddress"
+        runat="server"
+        TextMode="MultiLine"
+        Rows="4"
+        Columns="30">
+    </asp:TextBox>
+
+    <br /><br />
+
+    Age:
+    <asp:TextBox ID="txtAge" runat="server"></asp:TextBox>
+
+    <asp:RangeValidator
+        ID="rvAge"
+        runat="server"
+        ControlToValidate="txtAge"
+        MinimumValue="18"
+        MaximumValue="60"
+        Type="Integer"
+        ErrorMessage="Age must be between 18 and 60"
+        ForeColor="Red">
+    </asp:RangeValidator>
+
+    <br /><br />
+
+    <asp:Button ID="btnRegister"
+        runat="server"
+        Text="Register"
+        OnClick="btnRegister_Click" />
+
+    <br /><br />
+
+    <asp:Label ID="lblResult"
+        runat="server"
+        ForeColor="Green">
+    </asp:Label>
+
+</form>
+</body>
+</html>
+
+
+
+
+using System;
+
+namespace ServiceRegistration
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Page.UnobtrusiveValidationMode = System.Web.UI.UnobtrusiveValidationMode.None;
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                lblResult.Text = "Registration successful for " + txtName.Text;
+            }
+        }
+    }
+}
