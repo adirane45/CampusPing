@@ -1,0 +1,163 @@
+ProfileThemeDemo
+
+Create the MyTheme.
+Skin File Name it:
+Controls.skin:
+<asp:Label runat="server"
+    ForeColor="DarkBlue"
+    Font-Size="Large"
+    Font-Bold="true" />
+
+<asp:TextBox runat="server"
+    Width="250px" />
+
+<asp:Button runat="server"
+    BackColor="DarkBlue"
+    ForeColor="White"
+    Font-Bold="true"
+    Width="120px"
+    Height="35px" />
+
+StyleSheet.css:
+
+body {
+    font-family: Arial;
+    background-color: #f2f2f2;
+}
+
+.container {
+    width: 500px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 28px;
+    color: darkblue;
+    text-align: center;
+}
+
+.row {
+    margin: 15px;
+}
+
+
+<asp:Label runat="server"
+    ForeColor="Navy"
+    Font-Size="Large"
+    Font-Bold="true" />
+
+<asp:TextBox runat="server"
+    BackColor="White"
+    BorderColor="Navy"
+    BorderWidth="1px" />
+
+<asp:Button runat="server"
+    BackColor="Navy"
+    ForeColor="White"
+    Font-Bold="true"
+    BorderStyle="None" />
+
+
+Default.aspx:
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="ProfileThemeDemo.Default"
+    Theme="MyTheme" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Profile and Theme Demo</title>
+    <link href="App_Themes/MyTheme/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+
+<form id="form1" runat="server">
+
+<div class="container">
+
+    <div class="title">
+        Student Profile
+    </div>
+
+    <div class="row">
+
+        <asp:Label ID="Label1"
+            runat="server"
+            Text="Student Name:">
+        </asp:Label>
+
+        <br />
+
+        <asp:TextBox ID="txtName"
+            runat="server">
+        </asp:TextBox>
+
+    </div>
+
+    <div class="row">
+
+        <asp:Label ID="Label2"
+            runat="server"
+            Text="Course:">
+        </asp:Label>
+
+        <br />
+
+        <asp:TextBox ID="txtCourse"
+            runat="server">
+        </asp:TextBox>
+
+    </div>
+
+    <div class="row">
+
+        <asp:Button ID="btnSave"
+            runat="server"
+            Text="Save Profile"
+            OnClick="btnSave_Click" />
+
+    </div>
+
+    <div class="row">
+
+        <asp:Label ID="lblResult"
+            runat="server">
+        </asp:Label>
+
+    </div>
+
+</div>
+
+</form>
+
+</body>
+</html>
+
+
+aspx.cs
+using System;
+
+namespace ProfileThemeDemo
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            string name = txtName.Text;
+            string course = txtCourse.Text;
+
+            lblResult.Text = "Name: " + name +
+                             "<br/>Course: " + course;
+        }
+    }
+}
