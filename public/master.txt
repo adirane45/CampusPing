@@ -1,0 +1,253 @@
+NavigationDemo
+Web Forms
+
+Add Master Page
+Web Forms Master Page
+
+Site.master
+
+<%@ Master Language="C#" AutoEventWireup="true"
+    CodeBehind="Site.master.cs"
+    Inherits="NavigationDemo.SiteMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head runat="server">
+
+    <title>Navigation Demo</title>
+
+    <style>
+
+        body {
+            font-family: Arial;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+
+        .header {
+            background-color: darkblue;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .navigation {
+            background-color: #333;
+            padding: 10px;
+        }
+
+        .content {
+            width: 80%;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+        }
+
+        .footer {
+            background-color: darkblue;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+
+    </style>
+
+    <asp:ContentPlaceHolder ID="head"
+        runat="server">
+    </asp:ContentPlaceHolder>
+
+</head>
+
+<body>
+
+<form id="form1" runat="server">
+
+    <div class="header">
+
+        <h1>My College Website</h1>
+
+    </div>
+
+    <div class="navigation">
+
+        <asp:Menu ID="Menu1"
+            runat="server"
+            DataSourceID="SiteMapDataSource1"
+            Orientation="Horizontal"
+            ForeColor="White">
+
+        </asp:Menu>
+
+    </div>
+
+    <div class="content">
+
+        <asp:SiteMapPath ID="SiteMapPath1"
+            runat="server">
+        </asp:SiteMapPath>
+
+        <br /><br />
+
+        <asp:ContentPlaceHolder ID="MainContent"
+            runat="server">
+        </asp:ContentPlaceHolder>
+
+    </div>
+
+    <div class="footer">
+
+        <p>© 2026 My College</p>
+
+    </div>
+
+    <asp:SiteMapDataSource ID="SiteMapDataSource1"
+        runat="server" />
+
+</form>
+
+</body>
+
+</html>
+
+
+Add Web.sitemap
+Name it:
+
+Web.sitemap
+
+<?xml version="1.0" encoding="utf-8" ?>
+
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+
+  <siteMapNode
+      url="Home.aspx"
+      title="Home"
+      description="Home Page">
+
+    <siteMapNode
+        url="About.aspx"
+        title="About"
+        description="About College" />
+
+    <siteMapNode
+        url="Courses.aspx"
+        title="Courses"
+        description="College Courses" />
+
+    <siteMapNode
+        url="Contact.aspx"
+        title="Contact"
+        description="Contact Us" />
+
+  </siteMapNode>
+
+</siteMap>
+
+
+Create Home.aspx
+<%@ Page Title="Home"
+    Language="C#"
+    MasterPageFile="~/Site.master"
+    AutoEventWireup="true"
+    CodeBehind="Home.aspx.cs"
+    Inherits="NavigationDemo.Home" %>
+
+<asp:Content ID="Content1"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
+
+    <h2>Home Page</h2>
+
+    <p>
+        Welcome to our college website.
+    </p>
+
+    <p>
+        This page demonstrates Master Pages
+        and navigation controls.
+    </p>
+<h3>Website Navigation - TreeView</h3>
+
+<asp:TreeView ID="TreeView1"
+    runat="server"
+    DataSourceID="SiteMapDataSource1">
+</asp:TreeView>
+
+<asp:SiteMapDataSource ID="SiteMapDataSource1"
+    runat="server" />
+
+</asp:Content>
+
+
+
+Create About.aspx
+<%@ Page Title="About"
+    Language="C#"
+    MasterPageFile="~/Site.master"
+    AutoEventWireup="true"
+    CodeBehind="About.aspx.cs"
+    Inherits="NavigationDemo.About" %>
+
+<asp:Content ID="Content1"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
+
+    <h2>About College</h2>
+
+    <p>
+        This is the About page of our college website.
+    </p>
+
+</asp:Content>
+
+
+Create Courses.aspx
+<%@ Page Title="Courses"
+    Language="C#"
+    MasterPageFile="~/Site.master"
+    AutoEventWireup="true"
+    CodeBehind="Courses.aspx.cs"
+    Inherits="NavigationDemo.Courses" %>
+
+<asp:Content ID="Content1"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
+
+    <h2>Courses</h2>
+
+    <ul>
+        <li>MCA</li>
+        <li>M.Sc. Computer Science</li>
+        <li>M.Sc. Data Science</li>
+        <li>BCA</li>
+    </ul>
+
+</asp:Content>
+
+
+
+Create Contact.aspx
+<%@ Page Title="Contact"
+    Language="C#"
+    MasterPageFile="~/Site.master"
+    AutoEventWireup="true"
+    CodeBehind="Contact.aspx.cs"
+    Inherits="NavigationDemo.Contact" %>
+
+<asp:Content ID="Content1"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
+
+    <h2>Contact Us</h2>
+
+    <p>
+        Email: college@example.com
+    </p>
+
+    <p>
+        Phone: 1234567890
+    </p>
+
+</asp:Content>
