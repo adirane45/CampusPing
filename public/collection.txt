@@ -1,0 +1,84 @@
+CollectionDemo.java
+
+
+import java.util.*;
+
+public class CollectionDemo {
+
+    public static void main(String[] args) {
+
+        // ArrayList
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Java");
+        arrayList.add("Python");
+        arrayList.add("C++");
+
+        System.out.println("ArrayList: " + arrayList);
+
+
+        // LinkedList
+        LinkedList<String> linkedList = new LinkedList<>();
+        linkedList.add("A");
+        linkedList.add("B");
+        linkedList.add("C");
+
+        System.out.println("LinkedList: " + linkedList);
+
+
+        // HashSet
+        HashSet<String> hashSet = new HashSet<>();
+        hashSet.add("Red");
+        hashSet.add("Green");
+        hashSet.add("Blue");
+        hashSet.add("Red");
+
+        System.out.println("HashSet: " + hashSet);
+
+
+        // LinkedHashSet
+        LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
+        linkedHashSet.add("One");
+        linkedHashSet.add("Two");
+        linkedHashSet.add("Three");
+
+        System.out.println("LinkedHashSet: " + linkedHashSet);
+
+
+        // Stack
+        Stack<Integer> stack = new Stack<>();
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+
+        System.out.println("Stack: " + stack);
+        System.out.println("Popped: " + stack.pop());
+
+
+        // Vector
+        Vector<String> vector = new Vector<>();
+        vector.add("Apple");
+        vector.add("Banana");
+        vector.add("Mango");
+
+        System.out.println("Vector: " + vector);
+
+
+        // HashMap
+        HashMap<Integer, String> hashMap = new HashMap<>();
+        hashMap.put(1, "Aditya");
+        hashMap.put(2, "Rahul");
+        hashMap.put(3, "Amit");
+
+        System.out.println("HashMap: " + hashMap);
+
+
+        // Arrays
+        int[] numbers = {50, 20, 40, 10, 30};
+
+        System.out.println("Before sorting: " + Arrays.toString(numbers));
+
+        Arrays.sort(numbers);
+
+        System.out.println("After sorting: " + Arrays.toString(numbers));
+    }
+}

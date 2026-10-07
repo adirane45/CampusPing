@@ -1,0 +1,43 @@
+GenericDemo.java
+
+class Box<T> {
+    private T value;
+
+    void set(T value) {
+        this.value = value;
+    }
+
+    T get() {
+        return value;
+    }
+}
+
+public class GenericDemo {
+
+    public static <T> void display(T value) {
+        System.out.println("Value: " + value);
+        System.out.println("Type: " + value.getClass().getSimpleName());
+    }
+
+    public static void main(String[] args) {
+
+        Box<Integer> intBox = new Box<>();
+        intBox.set(100);
+
+        Box<String> stringBox = new Box<>();
+        stringBox.set("Hello Java");
+
+        Box<Double> doubleBox = new Box<>();
+        doubleBox.set(25.5);
+
+        System.out.println("Integer: " + intBox.get());
+        System.out.println("String: " + stringBox.get());
+        System.out.println("Double: " + doubleBox.get());
+
+        System.out.println();
+
+        display(50);
+        display("Generic Programming");
+        display(12.5);
+    }
+}

@@ -1,0 +1,25 @@
+JSPDemo
+
+index.jsp
+<%@ page import="java.util.Date" %>
+
+<html>
+<head>
+    <title>JSP Demo</title>
+</head>
+
+<body>
+
+<h1>JSP Technology Demonstration</h1>
+
+<p>Hello! This is my first JSP program.</p>
+
+<p>Current Date and Time:</p>
+
+<%
+    Date date = new Date();
+    out.println(date);
+%>
+
+</body>
+</html>
