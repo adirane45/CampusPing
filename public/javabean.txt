@@ -1,63 +1,98 @@
-Step 1: Create a Java Project
-JavaBeanDemo
+Create a professional, academic research poster for a university competition. The poster must be exactly square (1:1 aspect ratio), representing a printed 1m x 1m poster. 
 
-Step 2: Create JavaBean Class:
-StudentBean
+CRITICAL LEGIBILITY REQUIREMENT: All text must be easily readable from a distance of at least 1 meter. To achieve this:
+- Use ONLY large, bold, sans-serif fonts (Arial, Helvetica, Roboto, or Open Sans).
+- Minimum font sizes (equivalent for a 1m x 1m poster):
+  - Main Title: 72–100 pt (very large, bold)
+  - Section Headings: 48–60 pt
+  - Body text / Bullet points: 28–36 pt (never smaller)
+  - Header text (Aavishkar, Category, Code No., Level): 36–48 pt
+- Use short phrases and bullet points. Do NOT use paragraphs.
+- Maximum 6 bullet points per section.
+- High contrast: dark text (black, dark blue) on a light background (white, light grey).
+- Avoid thin, decorative, or script fonts.
 
-package javabeandemo;
+VISUALIZATION STYLE:
+- Use a modern academic infographic style.
+- Include large, flat, vector-style icons and simple diagrams.
+- Use color-coded section boxes (e.g., light blue, light green, light orange) with subtle drop shadows.
+- Use arrows to connect steps in flowcharts.
+- Keep visuals clean and uncluttered. No tiny details.
+- If a visual cannot be rendered legibly, use a large placeholder box with the label "[Visual Placeholder]" so it can be replaced manually.
 
-public class StudentBean {
+1. POSTER HEADER (Top Section – Strict Format):
+- At the very top center, create a bold header area.
+- Main Title: "Aavishkar"
+- Subtitle: "Maharashtra State Inter-University Research Convention"
+- Below subtitle, create a row with three fields:
+  - Left: "Category: Poster"
+  - Center: "Code No.: AV-2331"
+  - Right: "Level: PG"
+- Header text must be large and clear (36–48 pt equivalent).
 
-    private String name;
-    private int rollNo;
-    private String course;
+2. MAIN POSTER TITLE (Below Header):
+- Text: "Cyberbullying Detection in Social Media Comments using NLP and Machine Learning"
+- Style: Very large, bold, centered (72–100 pt equivalent).
 
-    public StudentBean() {
-    }
+3. POSTER LAYOUT (Body):
+- Use a 3-column layout. Each column should have clear, large section headings.
+- Leave ample white space. Do not overcrowd.
 
-    public String getName() {
-        return name;
-    }
+4. CONTENT SECTIONS (Use large fonts and visuals, not paragraphs):
 
-    public void setName(String name) {
-        this.name = name;
-    }
+- INTRODUCTION & PROBLEM:
+  - • Cyberbullying: insults, threats, hate speech, harassment.
+  - • Manual moderation: slow, costly, impractical.
+  - • Need: Automated NLP + ML detection.
+  - Visual: Large icon of a social media comment bubble with a warning sign (⚠️) and a shield icon.
 
-    public int getRollNo() {
-        return rollNo;
-    }
+- METHODOLOGY:
+  - Create a simple flowchart with large labels and icons:
+    - Step 1: Social Media Comments (icon: chat bubbles)
+    - Step 2: Preprocessing (icons: remove URLs, punctuation, stopwords; tokenization, lemmatization)
+    - Step 3: Feature Extraction (icons: TF-IDF, BERT embeddings)
+    - Step 4: Model Training (icon: brain / neural network)
+  - Use large arrows and icons. Text in flowchart must be at least 28 pt.
 
-    public void setRollNo(int rollNo) {
-        this.rollNo = rollNo;
-    }
+- MODELS & COMPARISON:
+  - Include a large bar chart with 5 bars.
+  - Labels: Naive Bayes, Logistic Regression, SVM, LSTM, BERT.
+  - Leave bar heights as placeholders (e.g., all equal or blank) for manual editing.
+  - Do NOT state which model is best unless real results are provided.
+  - Chart labels and axis text must be 28–36 pt.
+  - Add a small icon of a trophy next to the chart with text "Best model: [To be updated]".
 
-    public String getCourse() {
-        return course;
-    }
+- RESULTS & EVALUATION (Do NOT invent data):
+  - Create a large table with columns: Model, Accuracy, Precision, Recall, F1-Score.
+  - Rows: Naive Bayes, Logistic Regression, SVM, LSTM, BERT.
+  - Leave all metric cells as "XX%" or blank for manual editing.
+  - Below the table, add a large note: "Recall is prioritized to reduce missed bullying cases."
+  - Include a simple 2x2 confusion matrix with labels TP, FP, FN, TN and "XX" values.
+  - If a web interface is shown, use a generic mockup:
+    - A comment box with placeholder text.
+    - Prediction: [Bullying / Non-Bullying]
+    - Confidence: XX%
+    - A simple progress bar.
+  - Do NOT state that BERT, LSTM, or any model is the best unless real results are provided.
+  - If results are not final, title this section "Evaluation Plan & Expected Outcomes".
 
-    public void setCourse(String course) {
-        this.course = course;
-    }
-}
+- CONCLUSION & FUTURE SCOPE:
+  - Conclusion: • Timely detection for platforms, schools, moderators.
+  - Future Scope: • Marathi/Hindi/Hinglish support • Explainable AI • Browser extension.
+  - Use large bullet points only.
+  - Add small icons: globe (language), magnifying glass (explainable AI), puzzle piece (browser extension).
 
+5. FOOTER:
+- Leave clean space at the bottom. Do NOT add any logos, names, or identity of Participant/College/Institute/Department/University.
 
-Step 3: Create Main Class
+6. STYLE & TYPOGRAPHY:
+- Font: Arial, Helvetica, Roboto, or Open Sans. No thin or decorative fonts.
+- Color Palette: Dark Blue (#003366), Light Grey (#F0F0F0), Accent Red (#CC0000) for warnings, Accent Green (#00CC00) for success.
+- Icons: Use large, flat, modern vector icons (Data, Brain, Shield, Warning).
+- All text must be high contrast (dark on light).
 
-package javabeandemo;
+7. CRITICAL CONSTRAINT:
+- DO NOT include any name of Participant, College, Institute, Department, or University anywhere on the poster.
+- Leave "Code No." as the only identifier.
 
-public class Main {
-
-    public static void main(String[] args) {
-
-        StudentBean student = new StudentBean();
-
-        student.setName("Aditya");
-        student.setRollNo(101);
-        student.setCourse("MCA");
-
-        System.out.println("Student Details");
-        System.out.println("Name: " + student.getName());
-        System.out.println("Roll No: " + student.getRollNo());
-        System.out.println("Course: " + student.getCourse());
-    }
-}
+If the AI cannot render all text legibly in one generation, generate the layout with blank text boxes and large placeholders. The final text should be added manually using the specified font sizes.

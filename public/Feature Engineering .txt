@@ -1,0 +1,48 @@
+#Practical 7: : Feature Engineering Using Outlier Management, One-Hot Encoding, and Log Transformation
+import pandas as pd
+import numpy as np
+
+
+data = {
+    'Name':['Amit','Sneha','Rahul','Neha','Kiran','Ajay','Pooja'],
+    'Age':[24,26,29,35,40,28,27],
+    'Salary':[25000,28000,32000,35000,150000,30000,31000],
+    'Department':['IT','HR','IT','Sales','HR','IT','Sales']
+}
+
+df = pd.DataFrame(data)
+
+print("Original Dataset")
+print(df)
+
+
+Q1 = df['Salary'].quantile(0.25)
+Q3 = df['Salary'].quantile(0.75)
+
+IQR = Q3 - Q1
+
+lower = Q1 - 1.5 * IQR
+upper = Q3 + 1.5 * IQR
+
+print("\nLower Limit =", lower)
+print("Upper Limit =", upper)
+
+
+df_no_outliers = df[(df['Salary'] >= lower) &
+                    (df['Salary'] <= upper)]
+
+print("\nDataset after Removing Outliers")
+print(df_no_outliers)
+
+
+encoded_df = pd.get_dummies(df_no_outliers,
+                            columns=['Department'])
+
+print("\nDataset after One-Hot Encoding")
+print(encoded_df)
+
+
+encoded_df['Log_Salary'] = np.log(encoded_df['Salary'])
+
+print("\nDataset after Log Transformation")
+print(encoded_df)

@@ -1,0 +1,39 @@
+Data Preparation using techniques like Data
+Cleansing, Filtration, Aggregation etc
+Practical 2
+
+import pandas as pd
+from sklearn.datasets import load_iris
+
+iris = load_iris(as_frame=True)
+df = iris.frame
+df["species"] = df["target"].map(dict(enumerate(iris.target_names)))
+df = df.drop(columns="target")
+
+print("RAW DATA (first 5 rows)")
+print(df.head(), "\n")
+print("Shape:", df.shape)
+
+df = df.drop_duplicates() 
+df = df.dropna()
+df.columns = df.columns.str.replace(" (cm)", "", regex=False)
+
+print("\nAFTER CLEANSING")
+print("Shape:", df.shape)
+print("Missing values:\n", df.isna().sum())
+
+filtered_df = df[df["petal length"] > 2]
+
+print("\nAFTER FILTRATION (petal length > 2 cm)")
+print("Shape:", filtered_df.shape)
+print(filtered_df.head())
+
+species_summary = filtered_df.groupby("species").agg(
+Avg_Sepal_Length=("sepal length", "mean"),
+Avg_Petal_Length=("petal length", "mean"),
+
+Count=("species", "count")
+).round(2)
+
+print("\nAGGREGATION: Summary by Species")
+print(species_summary)

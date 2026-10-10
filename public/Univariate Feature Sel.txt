@@ -1,0 +1,71 @@
+#Practical 4: Univariate Feature Selection
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.feature_selection import SelectKBest
+from sklearn.feature_selection import f_classif
+
+data = load_breast_cancer()
+
+X = pd.DataFrame(data.data, columns=data.feature_names)
+y = data.target
+
+
+print("Shape of Dataset:", X.shape)
+
+print("\nFirst Five Records")
+print(X.head())
+
+print("\nFeature Names")
+print(X.columns)
+
+
+selector = SelectKBest(score_func=f_classif, k=10)
+
+selector.fit(X, y)
+
+
+scores = selector.scores_
+
+feature_scores = pd.DataFrame({
+    'Feature': X.columns,
+    'Score': scores
+})
+
+feature_scores = feature_scores.sort_values(
+                    by='Score',
+                    ascending=False)
+
+
+print("\nTop 10 Important Features")
+
+print(feature_scores.head(10))
+
+top10 = feature_scores.head(10)
+
+plt.figure(figsize=(10,5))
+
+plt.bar(top10['Feature'],
+        top10['Score'])
+
+plt.xticks(rotation=90)
+
+plt.xlabel("Features")
+
+plt.ylabel("ANOVA Score")
+
+plt.title("Top 10 Features using Univariate Selection")
+
+plt.tight_layout()
+
+plt.show()
+
+selected = selector.get_support()
+
+selected_features = X.columns[selected]
+
+print("\nSelected Features")
+
+print(selected_features)

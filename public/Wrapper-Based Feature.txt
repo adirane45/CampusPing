@@ -1,0 +1,85 @@
+#Practical 6: Wrapper-Based Feature Selection using RFE
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.datasets import load_breast_cancer
+from sklearn.feature_selection import RFE
+from sklearn.linear_model import LogisticRegression
+
+
+data = load_breast_cancer()
+
+X = pd.DataFrame(data.data, columns=data.feature_names)
+y = data.target
+
+
+print("Shape of Dataset:")
+print(X.shape)
+
+print("\nFirst Five Records")
+print(X.head())
+
+print("\nFeature Names")
+print(X.columns)
+
+model = LogisticRegression(max_iter=5000)
+
+
+rfe = RFE(
+    estimator=model,
+    n_features_to_select=10
+)
+
+rfe.fit(X, y)
+
+
+selected_features = X.columns[rfe.support_]
+
+print("\nSelected Features")
+
+for feature in selected_features:
+    print(feature)
+
+
+ranking = pd.DataFrame({
+    "Feature": X.columns,
+    "Ranking": rfe.ranking_
+})
+
+ranking = ranking.sort_values(by="Ranking")
+
+print("\nFeature Ranking")
+
+print(ranking)
+
+
+ranking_sorted = ranking.sort_values(by="Ranking")
+
+plt.figure(figsize=(10,6))
+
+plt.bar(ranking_sorted["Feature"],
+         ranking_sorted["Ranking"])
+
+plt.xticks(rotation=90)
+
+plt.xlabel("Features")
+
+plt.ylabel("RFE Ranking")
+
+plt.title("Feature Ranking using Recursive Feature Elimination")
+
+plt.tight_layout()
+
+plt.show()
+
+
+X_selected = X[selected_features]
+
+print("\nReduced Dataset Shape")
+
+print(X_selected.shape)
+
+print("\nSelected Dataset")
+
+print(X_selected.head())

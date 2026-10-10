@@ -1,0 +1,89 @@
+#Data Preprocessing
+#practical 3
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+pd.set_option("display.width", 120)
+pd.set_option("display.max_columns", None)
+
+data = {
+    "EmployeeID": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    "Name": ["Aman", "Riya", "Karan", "Sneha", "Vikram",
+             "Pooja", "Rahul", "Neha", "Arjun", "Divya"],
+    "Age": [25, np.nan, 34, 29, 41, np.nan, 38, 45, 30, 27],
+    "Gender": ["Male", "female", "M", "Female", "male",
+               "F", "Male", "female", np.nan, "Female"],
+    "Department": ["sales", "Sales", "IT", "it", "HR",
+                   "hr", "Finance", "finance", "IT", "Sales"],
+    "Salary": [50000, 62000, np.nan, 58000, 120000,
+               45000, 75000, np.nan, 68000, 54000],
+    "Experience_Years": [2, 5, 8, 4, 15, 1, 9, 20, 6, 3],
+}
+
+df = pd.DataFrame(data)
+
+print("=" * 70)
+print("ORIGINAL (MESSY) DATASET")
+print("=" * 70)
+print(df)
+print("\nMissing values per column:\n", df.isnull().sum())
+
+
+df["Age"] = df["Age"].fillna(df["Age"].median())
+df["Salary"] = df["Salary"].fillna(df["Salary"].median())
+df["Gender"] = df["Gender"].fillna(df["Gender"].mode()[0])
+
+print("\n" + "=" * 70)
+print("STEP 1: AFTER HANDLING MISSING VALUES")
+print("=" * 70)
+print(df)
+print("\nMissing values per column:\n", df.isnull().sum())
+
+gender_map = {
+    "male": "Male", "m": "Male",
+    "female": "Female", "f": "Female",
+}
+df["Gender"] = df["Gender"].str.strip().str.lower().map(gender_map)
+
+dept_map = {
+    "sales": "Sales",
+    "it": "IT",
+    "hr": "HR",
+    "finance": "Finance",
+}
+df["Department"] = df["Department"].str.strip().str.lower().map(dept_map)
+
+print("\n" + "=" * 70)
+print("STEP 2: AFTER FIXING INCONSISTENT VALUES")
+print("=" * 70)
+print(df)
+print("\nUnique Gender values:", df["Gender"].unique())
+print("Unique Department values:", df["Department"].unique())
+
+
+numeric_cols = ["Age", "Salary", "Experience_Years"]
+
+scaler_std = StandardScaler()
+df_standardized = df.copy()
+df_standardized[numeric_cols] = scaler_std.fit_transform(df[numeric_cols])
+
+scaler_mm = MinMaxScaler()
+df_normalized = df.copy()
+df_normalized[numeric_cols] = scaler_mm.fit_transform(df[numeric_cols])
+
+print("\n" + "=" * 70)
+print("STEP 3a: STANDARDIZED DATA (StandardScaler, mean=0, std=1)")
+print("=" * 70)
+print(df_standardized)
+
+print("\n" + "=" * 70)
+print("STEP 3b: NORMALIZED DATA (MinMaxScaler, range 0-1)")
+print("=" * 70)
+print(df_normalized)
+
+df.to_csv("cleaned_dataset.csv", index=False)
+df_standardized.to_csv("standardized_dataset.csv", index=False)
+df_normalized.to_csv("normalized_dataset.csv", index=False)
+
+print("\nSaved: cleaned_dataset.csv, standardized_dataset.csv, normalized_dataset.csv")

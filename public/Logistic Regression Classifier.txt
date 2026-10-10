@@ -1,0 +1,84 @@
+
+
+# Assignment 8: Logistic Regression Classifier
+
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn import linear_model
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
+
+
+X = np.array([
+    [3.1, 7.2], [4.0, 6.7], [2.9, 8.0], [3.5, 7.5],
+    [5.1, 4.5], [6.0, 5.0], [5.6, 5.0], [6.2, 4.8],
+    [3.3, 6.0], [4.5, 5.0]
+])
+
+y = np.array([0, 0, 0, 0, 1, 1, 1, 1, 0, 1])
+
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.3, random_state=5
+)
+
+
+classifier = linear_model.LogisticRegression(
+    solver='liblinear', C=1
+)
+classifier.fit(X_train, y_train)
+
+
+y_pred = classifier.predict(X_test)
+
+print("Accuracy:", accuracy_score(y_test, y_pred))
+print("\nConfusion Matrix:\n", confusion_matrix(y_test, y_pred))
+print("\nClassification Report:\n",
+      classification_report(y_test, y_pred, zero_division=0))
+
+
+def plot_decision_boundary(classifier, X, y,
+                           title='Logistic Regression Classifier'):
+
+
+    min_x = X[:, 0].min() - 1.0
+    max_x = X[:, 0].max() + 1.0
+    min_y = X[:, 1].min() - 1.0
+    max_y = X[:, 1].max() + 1.0
+    step = 0.01
+
+
+    x_vals, y_vals = np.meshgrid(
+        np.arange(min_x, max_x, step),
+        np.arange(min_y, max_y, step)
+    )
+
+
+    output = classifier.predict(
+        np.c_[x_vals.ravel(), y_vals.ravel()]
+    )
+    output = output.reshape(x_vals.shape)
+
+
+    plt.figure(figsize=(7, 6))
+    plt.title(title)
+    plt.pcolormesh(
+        x_vals, y_vals, output,
+        cmap=plt.cm.Pastel1, shading='auto'
+    )
+
+
+    plt.scatter(
+        X[:, 0], X[:, 1],
+        c=y, s=80, edgecolors='black',
+        cmap=plt.cm.Set1
+    )
+
+    plt.xlim(x_vals.min(), x_vals.max())
+    plt.ylim(y_vals.min(), y_vals.max())
+    plt.xlabel('Feature 1')
+    plt.ylabel('Feature 2')
+    plt.show()
+
+
+plot_decision_boundary(classifier, X, y)

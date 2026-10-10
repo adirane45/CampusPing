@@ -1,0 +1,63 @@
+Step 1: Create a Java Project
+JavaBeanDemo
+
+Step 2: Create JavaBean Class:
+StudentBean
+
+package javabeandemo;
+
+public class StudentBean {
+
+    private String name;
+    private int rollNo;
+    private String course;
+
+    public StudentBean() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getRollNo() {
+        return rollNo;
+    }
+
+    public void setRollNo(int rollNo) {
+        this.rollNo = rollNo;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+}
+
+
+Step 3: Create Main Class
+
+package javabeandemo;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        StudentBean student = new StudentBean();
+
+        student.setName("Aditya");
+        student.setRollNo(101);
+        student.setCourse("MCA");
+
+        System.out.println("Student Details");
+        System.out.println("Name: " + student.getName());
+        System.out.println("Roll No: " + student.getRollNo());
+        System.out.println("Course: " + student.getCourse());
+    }
+}
