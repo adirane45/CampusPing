@@ -1,0 +1,38 @@
+<html>
+<body>
+    <h2>Sum of First and Last Digit</h2>
+
+    <form action="result.jsp" method="post">
+        Enter Number:
+        <input type="number" name="num" required>
+        <br><br>
+        <input type="submit" value="Calculate Sum">
+    </form>
+</body>
+</html>
+
+
+
+ <html>
+<body>
+    <%
+        int n = Integer.parseInt(request.getParameter("num"));
+
+        n = Math.abs(n);
+        int last = n % 10;
+        int first = n;
+
+        while (first >= 10) {
+            first = first / 10;
+        }
+
+        int sum = first + last;
+    %>
+
+    <h2>Result</h2>
+
+    <p style="color:red; font-size:18px;">
+        Sum of first and last digit = <%= sum %>
+    </p>
+</body>
+</html>
