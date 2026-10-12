@@ -1,0 +1,11 @@
+import java.util.Date;
+
+public class DateDemo {
+    public static void main(String[] args) {
+        Date d = new Date();
+
+        System.out.println("Current date and time: " + d);
+        System.out.println("Time in milliseconds: " +
+            d.getTime());
+    }
+}
