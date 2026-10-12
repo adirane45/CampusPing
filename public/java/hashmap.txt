@@ -1,0 +1,30 @@
+
+import java.util.HashMap;
+
+public class HashMapDemo {
+
+    public static void main(String[] args) {
+
+        HashMap<Integer, String> students = new HashMap<>();
+
+        students.put(101, "Amit");
+        students.put(102, "Rahul");
+        students.put(103, "Priya");
+        students.put(104, "Sneha");
+
+        System.out.println("Students: " + students);
+
+        System.out.println("Student 101: "
+                + students.get(101));
+
+        students.put(102, "Rohan");
+
+        System.out.println("After Update: " + students);
+
+        students.remove(103);
+
+        System.out.println("After Removal: " + students);
+
+        System.out.println("Size: " + students.size());
+    }
+}

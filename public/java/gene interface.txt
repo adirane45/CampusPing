@@ -1,0 +1,22 @@
+
+interface MyInterface<T> {
+    void display(T value);
+}
+
+class MyClass<T> implements MyInterface<T> {
+
+    public void display(T value) {
+        System.out.println("Value: " + value);
+    }
+}
+
+public class GenericInterfaceDemo {
+    public static void main(String[] args) {
+
+        MyClass<Integer> obj1 = new MyClass<>();
+        obj1.display(100);
+
+        MyClass<String> obj2 = new MyClass<>();
+        obj2.display("Hello Java");
+    }
+}

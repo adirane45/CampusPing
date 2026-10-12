@@ -1,0 +1,23 @@
+
+import java.util.ArrayList;
+
+public class ArrayListDemo {
+    public static void main(String[] args) {
+
+        ArrayList<String> names = new ArrayList<>();
+
+        names.add("Amit");
+        names.add("Rahul");
+        names.add("Priya");
+
+        System.out.println("Names: " + names);
+
+        names.remove("Rahul");
+
+        System.out.println("After Removal: " + names);
+
+        System.out.println("First Name: " + names.get(0));
+
+        System.out.println("Size: " + names.size());
+    }
+}

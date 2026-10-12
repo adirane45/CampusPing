@@ -1,18 +1,22 @@
-Step 1: Create a Java Project
-JavaBeanDemo
+New → Java Project → JavaBeanProject
+src → New → Class →  Student
 
-Step 2: Create JavaBean Class:
-StudentBean
+import java.io.Serializable;
 
-package javabeandemo;
+public class Student implements Serializable {
 
-public class StudentBean {
-
+    private int id;
     private String name;
-    private int rollNo;
-    private String course;
 
-    public StudentBean() {
+    public Student() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -22,42 +26,22 @@ public class StudentBean {
     public void setName(String name) {
         this.name = name;
     }
-
-    public int getRollNo() {
-        return rollNo;
-    }
-
-    public void setRollNo(int rollNo) {
-        this.rollNo = rollNo;
-    }
-
-    public String getCourse() {
-        return course;
-    }
-
-    public void setCourse(String course) {
-        this.course = course;
-    }
 }
 
 
-Step 3: Create Main Class
+src → New → Class → JavaBeanDemo
 
-package javabeandemo;
 
-public class Main {
+public class JavaBeanDemo {
 
     public static void main(String[] args) {
 
-        StudentBean student = new StudentBean();
+        Student s = new Student();
 
-        student.setName("Aditya");
-        student.setRollNo(101);
-        student.setCourse("MCA");
+        s.setId(101);
+        s.setName("Amit");
 
-        System.out.println("Student Details");
-        System.out.println("Name: " + student.getName());
-        System.out.println("Roll No: " + student.getRollNo());
-        System.out.println("Course: " + student.getCourse());
+        System.out.println("Student ID: " + s.getId());
+        System.out.println("Student Name: " + s.getName());
     }
 }
