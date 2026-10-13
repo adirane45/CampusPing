@@ -1,0 +1,48 @@
+<html>
+<body>
+    <h2>Simple Addition Calculator</h2>
+    
+    <form action="calc" method="get">
+        Number 1: <input type="text" name="num1"><br><br>
+        Number 2: <input type="text" name="num2"><br><br>
+        <input type="submit" value="Add Numbers">
+    </form>
+</body>
+</html>
+
+
+
+CalcServlet.java
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/calc")
+public class CalcServlet extends HttpServlet {
+    
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        
+        // 1. Get data from the form (it comes in as text/Strings)
+        String s1 = req.getParameter("num1");
+        String s2 = req.getParameter("num2");
+        
+        // 2. Convert the text into integers (whole numbers)
+        int n1 = Integer.parseInt(s1);
+        int n2 = Integer.parseInt(s2);
+        
+        // 3. Perform the calculation
+        int sum = n1 + n2;
+        
+        // 4. Print the output back to the browser
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        
+        out.println("<h2>Calculation Result</h2>");
+        out.println("<p>The sum of " + n1 + " and " + n2 + " is: <b>" + sum + "</b></p>");
+    }
+}

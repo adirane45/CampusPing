@@ -1,0 +1,41 @@
+<html>
+<body>
+    <h2>Digit Calculator</h2>
+    <form action="result.jsp" method="post">
+        Enter a number: <input type="number" name="userNumber" required>
+        <input type="submit" value="Calculate Sum">
+    </form>
+</body>
+</html>
+
+
+
+<html>
+<body>
+    <%
+        // 1. Get the number from the form and convert it to an integer
+        int num = Integer.parseInt(request.getParameter("userNumber"));
+        
+        // 2. Find the last digit (using Modulo 10)
+        int lastDigit = num % 10;
+        
+        // 3. Find the first digit (keep dividing by 10 until it's less than 10)
+        int firstDigit = num;
+        while (firstDigit >= 10) {
+            firstDigit = firstDigit / 10;
+        }
+        
+        // 4. Calculate the sum
+        int sum = firstDigit + lastDigit;
+    %>
+
+    <!-- 5. Display output and change font size using style="font-size: 30px" -->
+    <div style="font-size: 30px; color: darkblue;">
+        <p>The original number is: <b><%= num %></b></p>
+        <p>First Digit: <%= firstDigit %></p>
+        <p>Last Digit: <%= lastDigit %></p>
+        <p><b>Sum: <%= sum %></b></p>
+    </div>
+
+</body>
+</html>

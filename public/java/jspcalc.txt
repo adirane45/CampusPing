@@ -1,0 +1,45 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Calculator</title>
+</head>
+<body>
+
+    <h2>Calculator</h2>
+    
+    <form>
+        <input type="number" step="any" name="n1" required>
+        <select name="op">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="number" step="any" name="n2" required>
+        <input type="submit" value="Calculate">
+    </form>
+
+    <br>
+
+    <%
+        String str1 = request.getParameter("n1");
+        String str2 = request.getParameter("n2");
+        String op = request.getParameter("op");
+
+        if (str1 != null && str2 != null && op != null) {
+            double n1 = Double.parseDouble(str1);
+            double n2 = Double.parseDouble(str2);
+            double res = 0;
+
+            if (op.equals("+")) res = n1 + n2;
+            if (op.equals("-")) res = n1 - n2;
+            if (op.equals("*")) res = n1 * n2;
+            if (op.equals("/")) res = n1 / n2;
+
+            out.print("<b>Result: " + res + "</b>");
+        }
+    %>
+
+</body>
+</html>

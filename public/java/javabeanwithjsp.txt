@@ -1,0 +1,22 @@
+StudentBean.java
+package demo;
+
+public class StudentBean {
+    private String name; // Private variable
+    
+    public StudentBean() {} // Empty constructor
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+}
+
+
+index.jsp
+<!-- 1. Create the Bean object named "s" -->
+<jsp:useBean id="s" class="demo.StudentBean" />
+
+<!-- 2. Set the name to "Aditya" -->
+<jsp:setProperty name="s" property="name" value="Aditya" />
+
+<!-- 3. Get the name and print it on the screen -->
+<h2>Student Name: <jsp:getProperty name="s" property="name" /></h2>

@@ -1,0 +1,33 @@
+CounterServlet.java
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/count")
+public class CounterServlet extends HttpServlet {
+    
+    // 1. Declare a class-level variable. 
+    // This is shared across all users who visit the page.
+    private int hitCount;
+
+    // 2. init() runs exactly ONCE when the server starts the Servlet
+    public void init() {
+        hitCount = 0;
+    }
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        
+        // 3. Increment the counter every time the page is opened
+        hitCount++;
+        
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        
+        out.println("<h2>Page Hit Counter</h2>");
+        out.println("<p>This page has been opened <b>" + hitCount + "</b> times.</p>");
+    }
+}

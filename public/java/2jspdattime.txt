@@ -1,0 +1,35 @@
+<html>
+<body>
+    <h2>User Input Form</h2>
+    
+    <!-- The form sends data to output.jsp -->
+    <form action="output.jsp" method="post">
+        Enter your name: <input type="text" name="userName">
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
+
+
+
+<!-- Import the Date class at the very top of the file -->
+<%@ page import="java.util.Date" %>
+
+<html>
+<body>
+    <h2>Output Page</h2>
+
+    <%
+        // 1. Get the input from the form
+        String name = request.getParameter("userName");
+        
+        // 2. Create a Date object for the exact current time
+        Date currentTime = new Date();
+    %>
+
+    <!-- 3. Use the <%= %> shortcut to print variables to the screen -->
+    <p>Hello, <b><%= name %></b>!</p>
+    <p>The current date and time is: <b><%= currentTime %></b></p>
+
+</body>
+</html>

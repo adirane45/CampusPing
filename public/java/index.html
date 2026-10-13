@@ -1,29 +1,218 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>File Index</title>
+    <title>HTTP Status 500 – Internal Server Error</title>
+    <style type="text/css">
+        body {
+            font-family: Tahoma, Arial, sans-serif; 
+            color: black; 
+            background-color: white; 
+            margin: 20px;
+        }
+        h1 {
+            font-family: Tahoma, Arial, sans-serif; 
+            color: white; 
+            background-color: #525D76; 
+            font-size: 22px; 
+            padding: 5px;
+        }
+        h2 {
+            font-family: Tahoma, Arial, sans-serif; 
+            color: white; 
+            background-color: #525D76; 
+            font-size: 16px; 
+            padding: 5px; 
+            margin-top: 30px;
+        }
+        h3 {
+            font-family: Tahoma, Arial, sans-serif; 
+            color: white; 
+            background-color: #525D76; 
+            font-size: 14px; 
+            padding: 5px;
+        }
+        b {
+            font-family: Tahoma, Arial, sans-serif; 
+            color: white; 
+            background-color: #525D76; 
+            padding: 2px 4px; 
+            border-radius: 3px;
+        }
+        p {
+            font-family: Tahoma, Arial, sans-serif; 
+            background: white; 
+            color: black; 
+            font-size: 14px;
+        }
+        pre {
+            font-family: Consolas, monospace;
+            font-size: 12px;
+            background-color: #f8f8f8;
+            border: 1px solid #ccc;
+            padding: 10px;
+            overflow-x: auto;
+            color: #b30000;
+        }
+        .line {
+            height: 1px; 
+            background-color: #525D76; 
+            border: none;
+        }
+        ul {
+            margin-top: 15px;
+        }
+        li {
+            margin-bottom: 5px; 
+            font-size: 14px;
+        }
+        a {
+            color: #0000ee; 
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .ai-container {
+            margin-top: 30px; 
+            padding: 15px; 
+            background-color: #f8f8f8; 
+            border: 1px solid #ccc; 
+            border-radius: 5px;
+        }
+        .ai-container h3 {
+            color: black; 
+            background: none; 
+            font-size: 16px; 
+            margin-top: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hosted Files</h1>
+    <!-- Tomcat 500 Error Section -->
+    <h1>HTTP Status 500 – Internal Server Error</h1>
+    <hr class="line" />
+    <p><b>Type</b> Exception Report</p>
+    <p><b>Message</b> Error processing request for /index.xhtml</p>
+    <p><b>Description</b> The server encountered an unexpected condition that prevented it from fulfilling the request. The target resource /index.xhtml generated a fatal exception during rendering.</p>
+    
+    <p><b>Exception</b></p>
+    <pre>
+javax.servlet.ServletException: Failed to load resource: /index.xhtml
+    org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:386)
+    org.apache.jasper.servlet.JspServlet.service(JspServlet.java:330)
+    javax.servlet.http.HttpServlet.service(HttpServlet.java:742)
+    org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52)
+    org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+    org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+    org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:198)
+    org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+    ... 15 more
+    </pre>
+
+    <p><b>Root Cause</b></p>
+    <pre>
+java.lang.NullPointerException: Configuration node 'xhtml_parser' is missing or corrupted
+    org.apache.jasper.compiler.Validator$DirectiveVisitor.visit(Validator.java:188)
+    org.apache.jasper.compiler.Node$PageDirective.accept(Node.java:574)
+    org.apache.jasper.compiler.Node$Nodes.visit(Node.java:2361)
+    org.apache.jasper.compiler.Node$Visitor.visitBody(Node.java:2411)
+    org.apache.jasper.compiler.Validator$DirectiveVisitor.visit(Validator.java:105)
+    ... 22 more
+    </pre>
+    
+    <p><b>Note</b> The full stack trace of the root cause is available in the server logs.</p>
+    <hr class="line" />
+    <h3>Apache Tomcat (TomEE)/11.0.22 (11.0.0-M1)</h3>
+    
+    
+
+    <!-- Combined File Index Section -->
+    <h2>Available Fallback Files</h2>
     <ul>
-        <li><a href="arraylist.txt">arraylist.txt</a></li>
-        <li><a href="collection.txt">collection.txt</a></li>
-        <li><a href="gene%20interface.txt">gene interface.txt</a></li>
-        <li><a href="gene%20method.txt">gene method.txt</a></li>
-        <li><a href="Generic%20Class.txt">Generic Class.txt</a></li>
-        <li><a href="generic.txt">generic.txt</a></li>
-        <li><a href="hashmap.txt">hashmap.txt</a></li>
-        <li><a href="hashsettxt.txt">hashsettxt.txt</a></li>
-        <li><a href="javabean.txt">javabean.txt</a></li>
-        <li><a href="jsp.txt">jsp.txt</a></li>
-        <li><a href="linkedlist.txt">linkedlist.txt</a></li>
-        <li><a href="linkhashset.txt">linkhashset.txt</a></li>
-        <li><a href="servlet.txt">servlet.txt</a></li>
-<li><a href="date.txt">date.txt</a></li>
-<li><a href="jspsum.txt">jspsum.txt</a></li>
-<li><a href="calender.txt">calender.txt</a></li>
-    </ul>
+    <li><a href="2jspdattime.txt">2jspdattime.txt</a></li>
+    <li><a href="arraylist.txt">arraylist.txt</a></li>
+    <li><a href="calender.txt">calender.txt</a></li>
+    <li><a href="collection.txt">collection.txt</a></li>
+    <li><a href="date.txt">date.txt</a></li>
+    <li><a href="ejb.txt">ejb.txt</a></li>
+    <li><a href="gene%20interface.txt">gene interface.txt</a></li>
+    <li><a href="gene%20method.txt">gene method.txt</a></li>
+    <li><a href="Generic%20Class.txt">Generic Class.txt</a></li>
+    <li><a href="generic.txt">generic.txt</a></li>
+    <li><a href="hashmap.txt">hashmap.txt</a></li>
+    <li><a href="hashsettxt.txt">hashsettxt.txt</a></li>
+    <li><a href="javabean.txt">javabean.txt</a></li>
+    <li><a href="javabeanwithjsp.txt">javabeanwithjsp.txt</a></li>
+    <li><a href="jsp.txt">jsp.txt</a></li>
+    <li><a href="jspcalc.txt">jspcalc.txt</a></li>
+    <li><a href="jspfirst_last.txt">jspfirst_last.txt</a></li>
+    <li><a href="jspsum.txt">jspsum.txt</a></li>
+    <li><a href="linkedlist.txt">linkedlist.txt</a></li>
+    <li><a href="linkhashset.txt">linkhashset.txt</a></li>
+    <li><a href="servlet.txt">servlet.txt</a></li>
+    <li><a href="servletcalc.txt">servletcalc.txt</a></li>
+    <li><a href="servletcookies.txt">servletcookies.txt</a></li>
+    <li><a href="servletcounter.txt">servletcounter.txt</a></li>
+    <li><a href="servletinput.txt">servletinput.txt</a></li>
+    <li><a href="servletsession.txt">servletsession.txt</a></li>
+    <li><a href="struts.txt">struts.txt</a></li>
+    <li><a href="TokenDemo.txt">TokenDemo.txt</a></li>
+</ul>
+
+    <!-- AI Search Bar Section -->
+    <div class="ai-container">
+        <h3>RollBACK ERROR</h3>
+        <input type="text" id="ai-query" placeholder="Locate Error"width: 70%; padding: 8px; font-family: Tahoma; border: 1px solid #999;">
+        <button onclick="askGemini()" style="padding: 8px 15px; cursor: pointer; background-color: #525D76; color: white; border: none; font-weight: bold;">Error</button>
+        <p id="ai-response" style="margin-top: 15px; color: #333; font-size: 14px; white-space: pre-wrap; font-family: Consolas, monospace;"></p>
+    </div>
+    <!-- JavaScript to call the free Gemini API -->
+    <!-- JavaScript to call the free Gemini API with Auto-Detect -->
+    <!-- JavaScript to call the Gemini 3.8 API -->
+    <script>
+        async function askGemini() {
+            const query = document.getElementById('ai-query').value;
+            const responseElement = document.getElementById('ai-response');
+            if (!query) return;
+
+            responseElement.innerText = "Thinking (using Gemini 3.8 Flash)...";
+
+            // REPLACE THIS WITH YOUR ACTUAL API KEY
+            const apiKey = 'AQ.Ab8RN6LrAMCjRLYhxY2xvVx9uAgF_6YY-eV14YVMCIYVVP-vKQ'; 
+            
+            // Updated to use the new Gemini 3.8 Flash model
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        contents: [{ 
+                            parts: [{ 
+                                text: "You are an AI assistant on a 500 Error server page listing Java and JSP tutorials. Answer this question concisely: " + query 
+                            }] 
+                        }]
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok && data.candidates && data.candidates.length > 0) {
+                    // Success! Display the response
+                    responseElement.innerText = data.candidates[0].content.parts[0].text;
+                } else {
+                    // Print the EXACT error from Google if something goes wrong
+                    responseElement.innerText = "Google API Error: " + (data.error?.message || JSON.stringify(data));
+                    console.error("Full API Response:", data);
+                }
+            } catch (error) {
+                responseElement.innerText = "Network Error. Are you running this locally (file://)? Try using a local server. Check console for details.";
+                console.error(error);
+            }
+        }
+    </script>
 </body>
 </html>

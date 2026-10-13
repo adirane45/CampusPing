@@ -1,0 +1,42 @@
+<html>
+<body>
+    <h2>Servlet Input Test</h2>
+    
+    <!-- The 'action' must match the Servlet's @WebServlet name -->
+    <form action="hello" method="get">
+        Enter your name: <input type="text" name="userName">
+        <input type="submit" value="Say Hello">
+    </form>
+</body>
+</html>
+
+
+
+
+HelloServlet.java
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+// Maps the Servlet to the "/hello" URL from the HTML form
+@WebServlet("/hello") 
+public class HelloServlet extends HttpServlet {
+    
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        
+        
+        String name = req.getParameter("userName");
+        
+      
+        res.setContentType("text/html");
+        
+  
+        PrintWriter out = res.getWriter();
+        out.println("<h2>Hello, " + name + "!</h2>");
+        out.println("<p>Your Servlet is working perfectly.</p>");
+    }
+}

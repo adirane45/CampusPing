@@ -1,0 +1,60 @@
+Here is the minimal, raw code for a simple EJB greeting application.
+
+1. The Interface (src/main/java/com.demo.ejb/GreetingLocal.java)
+
+package com.demo.ejb;
+
+import jakarta.ejb.Local;
+
+@Local
+public interface GreetingLocal {
+    String greet(String name);
+}
+
+
+2. The EJB Implementation (src/main/java/com/demo/ejb/GreetingBean.java)
+
+
+package com.demo.ejb;
+
+import jakarta.ejb.Stateless;
+
+@Stateless
+public class GreetingBean implements GreetingLocal {
+    
+    @Override
+    public String greet(String name) {
+        String target = (name != null && !name.trim().isEmpty()) ? name : "World";
+        return "Hello, " + target + "! (Powered by EJB)";
+    }
+}
+
+
+
+3. The Web Client to test it (src/main/java/com/demo/web/GreetingServlet.java)
+
+Java
+package com.demo.web;
+
+import jakarta.ejb.EJB;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import com.demo.ejb.GreetingLocal;
+
+@WebServlet("/simple-greet")
+public class GreetingServlet extends HttpServlet {
+
+    @EJB
+    private GreetingLocal greeting;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String message = greeting.greet(request.getParameter("name"));
+        
+        response.setContentType("text/plain");
+        response.getWriter().write(message);
+    }
+}

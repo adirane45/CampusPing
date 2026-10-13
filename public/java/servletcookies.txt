@@ -1,0 +1,83 @@
+<html>
+<body>
+    <h2>Cookie Login</h2>
+    <form action="setcookie" method="post">
+        Enter Name: <input type="text" name="userName">
+        <input type="submit" value="Login">
+    </form>
+</body>
+</html>
+
+
+SetCookieServlet.java
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/setcookie")
+public class SetCookieServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        
+        String name = req.getParameter("userName");
+        
+        // 1. Create a new Cookie (Key, Value)
+        Cookie userCookie = new Cookie("savedName", name);
+        
+        // (Optional) Set how long the cookie lives in seconds. 
+        // 3600 seconds = 1 hour. If you don't set this, it deletes when the browser closes.
+        userCookie.setMaxAge(3600);
+        
+        // 2. Add the cookie to the browser response
+        res.addCookie(userCookie);
+        
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        out.println("<h3>Cookie created for " + name + "!</h3>");
+        
+        // Link to the second Servlet
+        out.println("<a href='getcookie'>Go to your Profile</a>");
+    }
+}
+
+
+
+GetCookieServlet.java
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/getcookie")
+public class GetCookieServlet extends HttpServlet {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException {
+        
+        res.setContentType("text/html");
+        PrintWriter out = res.getWriter();
+        
+        // 1. Get ALL cookies from the request (returns an Array)
+        Cookie[] cookies = req.getCookies();
+        String name = "Unknown";
+        
+        // 2. Loop through the array to find our specific cookie
+        if (cookies != null) {
+            for (Cookie c : cookies) {
+                if (c.getName().equals("savedName")) {
+                    name = c.getValue(); // Get the saved text
+                }
+            }
+        }
+        
+        out.println("<h2>Profile Page</h2>");
+        out.println("<p>The cookie remembered you: <b>" + name + "</b></p>");
+    }
+}
