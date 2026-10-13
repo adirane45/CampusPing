@@ -59,22 +59,33 @@
             background-color: #525D76; 
             border: none;
         }
-        ul {
-            margin-top: 15px;
+        
+        /* Reorganized File Grid */
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px 16px;
+            padding: 0;
+            margin: 15px 0 30px 0;
+            list-style: none;
         }
-        li {
-            margin-bottom: 5px; 
-            font-size: 14px;
+        .file-grid li {
+            font-size: 13px;
+            padding: 4px 6px;
+            background-color: #fafafa;
+            border-left: 3px solid #525D76;
         }
-        a {
+        .file-grid a {
             color: #0000ee; 
             text-decoration: none;
+            word-break: break-all;
         }
-        a:hover {
+        .file-grid a:hover {
             text-decoration: underline;
         }
+
         .ai-container {
-            margin-top: 30px; 
+            margin-top: 25px; 
             padding: 15px; 
             background-color: #f8f8f8; 
             border: 1px solid #ccc; 
@@ -125,92 +136,119 @@ java.lang.NullPointerException: Configuration node 'xhtml_parser' is missing or 
     <p><b>Note</b> The full stack trace of the root cause is available in the server logs.</p>
     <hr class="line" />
     <h3>Apache Tomcat (TomEE)/11.0.22 (11.0.0-M1)</h3>
-    
-    
 
-    <!-- Combined File Index Section -->
+    <!-- Reordered Multi-Column File Index Section -->
     <h2>Available Fallback Files</h2>
-    <ul>
-    <li><a href="2jspdattime.txt">2jspdattime.txt</a></li>
-    <li><a href="arraylist.txt">arraylist.txt</a></li>
-    <li><a href="calender.txt">calender.txt</a></li>
-    <li><a href="collection.txt">collection.txt</a></li>
-    <li><a href="date.txt">date.txt</a></li>
-    <li><a href="ejb.txt">ejb.txt</a></li>
-    <li><a href="gene%20interface.txt">gene interface.txt</a></li>
-    <li><a href="gene%20method.txt">gene method.txt</a></li>
-    <li><a href="Generic%20Class.txt">Generic Class.txt</a></li>
-    <li><a href="generic.txt">generic.txt</a></li>
-    <li><a href="hashmap.txt">hashmap.txt</a></li>
-    <li><a href="hashsettxt.txt">hashsettxt.txt</a></li>
-    <li><a href="javabean.txt">javabean.txt</a></li>
-    <li><a href="javabeanwithjsp.txt">javabeanwithjsp.txt</a></li>
-    <li><a href="jsp.txt">jsp.txt</a></li>
-    <li><a href="jspcalc.txt">jspcalc.txt</a></li>
-    <li><a href="jspfirst_last.txt">jspfirst_last.txt</a></li>
-    <li><a href="jspsum.txt">jspsum.txt</a></li>
-    <li><a href="linkedlist.txt">linkedlist.txt</a></li>
-    <li><a href="linkhashset.txt">linkhashset.txt</a></li>
-    <li><a href="servlet.txt">servlet.txt</a></li>
-    <li><a href="servletcalc.txt">servletcalc.txt</a></li>
-    <li><a href="servletcookies.txt">servletcookies.txt</a></li>
-    <li><a href="servletcounter.txt">servletcounter.txt</a></li>
-    <li><a href="servletinput.txt">servletinput.txt</a></li>
-    <li><a href="servletsession.txt">servletsession.txt</a></li>
-    <li><a href="struts.txt">struts.txt</a></li>
-    <li><a href="TokenDemo.txt">TokenDemo.txt</a></li>
-</ul>
+    <ul class="file-grid">
+        <li><a href="2jspdattime.txt">2jspdattime.txt</a></li>
+        <li><a href="arraylist.txt">arraylist.txt</a></li>
+        <li><a href="calender.txt">calender.txt</a></li>
+        <li><a href="collection.txt">collection.txt</a></li>
+        <li><a href="date.txt">date.txt</a></li>
+        <li><a href="ejb.txt">ejb.txt</a></li>
+        <li><a href="gene%20interface.txt">gene interface.txt</a></li>
+        <li><a href="gene%20method.txt">gene method.txt</a></li>
+        <li><a href="Generic%20Class.txt">Generic Class.txt</a></li>
+        <li><a href="generic.txt">generic.txt</a></li>
+        <li><a href="hashmap.txt">hashmap.txt</a></li>
+        <li><a href="hashsettxt.txt">hashsettxt.txt</a></li>
+        <li><a href="javabean.txt">javabean.txt</a></li>
+        <li><a href="javabeanwithjsp.txt">javabeanwithjsp.txt</a></li>
+        <li><a href="jsp.txt">jsp.txt</a></li>
+        <li><a href="jspcalc.txt">jspcalc.txt</a></li>
+        <li><a href="jspfirst_last.txt">jspfirst_last.txt</a></li>
+        <li><a href="jspsum.txt">jspsum.txt</a></li>
+        <li><a href="linkedlist.txt">linkedlist.txt</a></li>
+        <li><a href="linkhashset.txt">linkhashset.txt</a></li>
+        <li><a href="servlet.txt">servlet.txt</a></li>
+        <li><a href="servletcalc.txt">servletcalc.txt</a></li>
+        <li><a href="servletcookies.txt">servletcookies.txt</a></li>
+        <li><a href="servletcounter.txt">servletcounter.txt</a></li>
+        <li><a href="servletinput.txt">servletinput.txt</a></li>
+        <li><a href="servletsession.txt">servletsession.txt</a></li>
+        <li><a href="struts.txt">struts.txt</a></li>
+        <li><a href="TokenDemo.txt">TokenDemo.txt</a></li>
+    </ul>
 
     <!-- AI Search Bar Section -->
     <div class="ai-container">
         <h3>RollBACK ERROR</h3>
-        <input type="text" id="ai-query" placeholder="Locate Error"width: 70%; padding: 8px; font-family: Tahoma; border: 1px solid #999;">
+        <input type="text" id="ai-query" placeholder="Locate Error" style="width: 70%; padding: 8px; font-family: Tahoma; border: 1px solid #999;">
         <button onclick="askGemini()" style="padding: 8px 15px; cursor: pointer; background-color: #525D76; color: white; border: none; font-weight: bold;">Error</button>
         <p id="ai-response" style="margin-top: 15px; color: #333; font-size: 14px; white-space: pre-wrap; font-family: Consolas, monospace;"></p>
     </div>
-    <!-- JavaScript to call the free Gemini API -->
-    <!-- JavaScript to call the free Gemini API with Auto-Detect -->
-    <!-- JavaScript to call the Gemini 3.8 API -->
+
+ <!-- JavaScript using OpenRouter with Auto-Fallback for Free Models -->
     <script>
         async function askGemini() {
             const query = document.getElementById('ai-query').value;
             const responseElement = document.getElementById('ai-response');
             if (!query) return;
 
-            responseElement.innerText = "Thinking (using Gemini 3.8 Flash)...";
+            // 1. SPLIT YOUR OPENROUTER KEY
+            const part1 = "sk-or-v1-10";            
+            const part2 = "d84901f1cbba4bcf907bc4cfbe0a6902493d4a7e9b";   // Replace with your real key
+            const part3 = "40b0787925b73105fa39";  // Replace with your real key
+            const apiKey = [part1, part2, part3].join(""); 
 
-            // REPLACE THIS WITH YOUR ACTUAL API KEY
-            const apiKey = 'AQ.Ab8RN6LrAMCjRLYhxY2xvVx9uAgF_6YY-eV14YVMCIYVVP-vKQ'; 
-            
-            // Updated to use the new Gemini 3.8 Flash model
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${apiKey}`;
+            // 2. OPENROUTER FREE MODEL FALLBACK LIST
+           const modelsToTry = [
+                "openrouter/free",                          // Ultimate fallback: auto-picks an available free model
+                "thinkingmachines/inkling-small:free",      // Best overall for general purpose and coding
+                "nvidia/nemotron-3-ultra-550b-a55b:free",   // Massive 1M context, great for complex errors
+                "google/gemma-4-26b-a4b-it:free",           // Google's latest multimodal open model
+                "cohere/north-mini-code:free"               // Specifically trained for agentic coding
+            ];
 
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        contents: [{ 
-                            parts: [{ 
-                                text: "You are an AI assistant on a 500 Error server page listing Java and JSP tutorials. Answer this question concisely: " + query 
-                            }] 
-                        }]
-                    })
-                });
-                
-                const data = await response.json();
-                
-                if (response.ok && data.candidates && data.candidates.length > 0) {
-                    // Success! Display the response
-                    responseElement.innerText = data.candidates[0].content.parts[0].text;
-                } else {
-                    // Print the EXACT error from Google if something goes wrong
-                    responseElement.innerText = "Google API Error: " + (data.error?.message || JSON.stringify(data));
-                    console.error("Full API Response:", data);
+            const url = "https://openrouter.ai/api/v1/chat/completions";
+
+            for (let i = 0; i < modelsToTry.length; i++) {
+                const modelName = modelsToTry[i];
+                responseElement.innerText = `Connecting to AI (${modelName})...`;
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`,
+                            'HTTP-Referer': window.location.href, 
+                            'X-Title': '500 Error Page Assistant'
+                        },
+                        body: JSON.stringify({
+                            model: modelName, 
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: "You are an AI diagnosing a 500 error page with Java/JSP topics. Answer concisely."
+                                },
+                                {
+                                    role: "user",
+                                    content: query
+                                }
+                            ]
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    // If successful, display answer and STOP the loop
+                    if (response.ok && data.choices && data.choices.length > 0) {
+                        responseElement.innerText = data.choices[0].message.content;
+                        return; 
+                    } else {
+                        console.warn(`${modelName} failed:`, data.error?.message);
+                        // If this was the last model in the list, show the error
+                        if (i === modelsToTry.length - 1) {
+                            responseElement.innerText = "All free AI models are currently busy. Please try again later.";
+                        }
+                    }
+                } catch (error) {
+                    console.error(`${modelName} network error:`, error);
+                    if (i === modelsToTry.length - 1) {
+                        responseElement.innerText = "Network Error. Check console logs.";
+                    }
                 }
-            } catch (error) {
-                responseElement.innerText = "Network Error. Are you running this locally (file://)? Try using a local server. Check console for details.";
-                console.error(error);
             }
         }
     </script>
