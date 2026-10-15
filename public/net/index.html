@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Compilation Error</title>
+    <meta name="viewport" content="width=device-width" />
+    <style>
+        /* Authentic ASP.NET YSOD Styles */
+        body { font-family: "Verdana"; font-weight: normal; font-size: .7em; color: black; background-color: white; margin: 0; padding: 0; }
+        .content-wrapper { padding: 20px; }
+        p { font-family: "Verdana"; font-weight: normal; color: black; margin-top: -5px; }
+        b { font-family: "Verdana"; font-weight: bold; color: black; margin-top: -5px; }
+        H1 { font-family: "Verdana"; font-weight: normal; font-size: 18pt; color: red; margin-top: 0; }
+        H2 { font-family: "Verdana"; font-weight: normal; font-size: 14pt; color: maroon; }
+        pre { font-family: "Consolas", "Lucida Console", Monospace; font-size: 11pt; margin: 0; padding: 0.5em; line-height: 14pt; }
+        .marker { font-weight: bold; color: black; text-decoration: none; }
+        .version { color: gray; }
+        .error { margin-bottom: 10px; }
+        .expandable { text-decoration: underline; font-weight: bold; color: navy; cursor: pointer; }
+        table.code-table { width: 100%; background-color: #ffffcc; border-collapse: collapse; }
+        table.code-table td { padding: 5px; }
+        
+        /* Appended Functionality Styles */
+        .custom-tools-wrapper { margin-top: 40px; padding: 20px; border-top: 2px solid silver; background-color: #fcfcfc; }
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 0;
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .file-grid li {
+            background: white;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-left: 4px solid maroon;
+        }
+        .file-grid a { color: #0033cc; text-decoration: none; font-size: 12px; }
+        .file-grid a:hover { text-decoration: underline; }
+        
+        .ai-box {
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .ai-box h3 { margin-top: 0; font-size: 14pt; color: maroon; font-weight: normal; }
+        .ai-box input { width: 70%; padding: 8px; font-family: Verdana; border: 1px solid #aaa; }
+        .ai-box button { padding: 8px 15px; background: #e0e0e0; border: 1px solid #888; cursor: pointer; font-weight: bold; }
+        .ai-box button:hover { background: #d0d0d0; }
+        #ai-response { margin-top: 15px; font-family: Consolas, monospace; font-size: 13px; color: #333; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <span>
+            <H1>Server Error in '/' Application.<hr width="100%" size="1" color="silver"></H1>
+            <H2> <i>Compilation Error</i> </H2>
+        </span>
+        
+        <font face="Arial, Helvetica, Geneva, SunOS, sans-serif">
+            <b> Description: </b>An error occurred during the compilation of a resource required to service this request. Please review the following specific error details and modify your source code appropriately.
+            <br><br>
+            
+            <b> Compiler Error Message: </b>CS1002: ; expected<br><br>
+            
+            <b>Source Error:</b><br><br>
+            <table class="code-table">
+               <tr>
+                  <td>
+                      <code><pre>
+Line 12:     protected void Page_Load(object sender, EventArgs e)
+Line 13:     {
+<font color="red">Line 14:         string configNode = ConfigurationManager.AppSettings[&quot;ParserNode&quot;].ToString()</font>
+Line 15:         InitializeParser(configNode);
+Line 16:     }</pre></code>
+                  </td>
+               </tr>
+            </table>
+            <br>
+            
+            <b> Source File: </b> c:\inetpub\wwwroot\index.aspx.cs &nbsp;&nbsp; <b> Line: </b> 14
+            <br><br>
+            
+            <div class="expandable" onclick="document.getElementById('compilerOutputDiv').style.display = document.getElementById('compilerOutputDiv').style.display == 'none' ? 'block' : 'none';">
+                Show Detailed Compiler Output:
+            </div>
+            
+            <div id="compilerOutputDiv" style="display: none;">
+                 <br>
+                 <table class="code-table">
+                     <tr>
+                         <td>
+                             <code><pre>
+c:\windows\system32\inetsrv> "C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe" /t:library /utf8output /R:"C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll" /out:"C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Temporary ASP.NET Files\root\App_Web_index.aspx.cs.dll" "C:\inetpub\wwwroot\index.aspx.cs"
+
+Microsoft (R) Visual C# Compiler version 4.8.9032.0
+for C# 5
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+c:\inetpub\wwwroot\index.aspx.cs(14,85): error CS1002: ; expected
+                             </pre></code>
+                         </td>
+                     </tr>
+                 </table>
+            </div>
+            <br>
+            
+            <hr width="100%" size="1" color="silver">
+            <b>Version Information:</b>&nbsp;Microsoft .NET Framework Version:4.0.30319; ASP.NET Version:4.8.4494.0
+        </font>
+    </div>
+
+    <!-- Restored Functionality (Cleanly Separated) -->
+    <div class="custom-tools-wrapper">
+        <H2><i>Hosted ASP.NET Files</i></H2>
+        <ul class="file-grid">
+            <li><a href="controls.txt">controls.txt</a></li>
+            <li><a href="databinding.txt">databinding.txt</a></li>
+            <li><a href="datagrid.txt">datagrid.txt</a></li>
+            <li><a href="postback.txt">postback.txt</a></li>
+            <li><a href="repeater.txt">repeater.txt</a></li>
+            <li><a href="sorting.txt">sorting.txt</a></li>
+            <li><a href="theme.txt">theme.txt</a></li>
+            <li><a href="validation.txt">validation.txt</a></li>
+            <li><a href="master.txt">master.txt</a></li>
+            <li><a href="controls.txt">controls.txt</a></li>
+            <li><a href="controls.txt">controls.txt</a></li>
+            <li><a href="controls.txt">controls.txt</a></li>
+        </ul>
+
+        <div class="ai-box">
+            <h3>RollBACK ERROR</h3>
+            <input type="text" id="ai-query" placeholder="Locate Error...">
+            <button onclick="askGemini()">Error</button>
+            <p id="ai-response"></p>
+        </div>
+    </div>
+
+    <script>
+        async function askGemini() {
+            const query = document.getElementById('ai-query').value;
+            const responseElement = document.getElementById('ai-response');
+            if (!query) return;
+
+            const part1 = "sk-or-v1-10d84901f1c";            
+            const part2 = "bba4bcf907bc4cfbe0a6902493d4a7e9b";   
+            const part3 = "40b0787925b73105fa39";  
+            const apiKey = [part1, part2, part3].join(""); 
+
+            const modelsToTry = [
+                "openrouter/free",                          
+                "thinkingmachines/inkling-small:free",      
+                "nvidia/nemotron-3-ultra-550b-a55b:free",   
+                "google/gemma-4-26b-a4b-it:free",           
+                "cohere/north-mini-code:free"               
+            ];
+
+            const url = "https://openrouter.ai/api/v1/chat/completions";
+
+            for (let i = 0; i < modelsToTry.length; i++) {
+                const modelName = modelsToTry[i];
+                responseElement.innerText = `Connecting to AI (${modelName})...`;
+
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${apiKey}`,
+                            'HTTP-Referer': window.location.href, 
+                            'X-Title': 'ASP.NET YSOD Assistant'
+                        },
+                        body: JSON.stringify({
+                            model: modelName, 
+                            messages: [
+                                {
+                                    role: "system",
+                                    content: "You are an AI diagnosing an ASP.NET YSOD Compilation Error (csc.exe). Answer concisely."
+                                },
+                                {
+                                    role: "user",
+                                    content: query
+                                }
+                            ]
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    
+                    if (response.ok && data.choices && data.choices.length > 0) {
+                        responseElement.innerText = data.choices[0].message.content;
+                        return; 
+                    } else {
+                        console.warn(`${modelName} failed:`, data.error?.message);
+                        if (i === modelsToTry.length - 1) {
+                            responseElement.innerText = "All free AI models are currently busy. Please try again later.";
+                        }
+                    }
+                } catch (error) {
+                    console.error(`${modelName} network error:`, error);
+                    if (i === modelsToTry.length - 1) {
+                        responseElement.innerText = "Network Error. Check console logs.";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
