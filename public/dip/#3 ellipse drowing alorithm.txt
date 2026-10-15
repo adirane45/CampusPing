@@ -1,0 +1,97 @@
+#3 ellipse drowing alorithm
+
+import matplotlib.pyplot as plt
+
+
+def midpoint_ellipse(x_center, y_center, a, b):
+    x = 0
+    y = b
+
+    x_points = []
+    y_points = []
+
+    a2 = a * a
+    b2 = b * b
+
+    # Decision parameter for Region 1
+    d1 = b2 - (a2 * b) + (0.25 * a2)
+
+    dx = 2 * b2 * x
+    dy = 2 * a2 * y
+
+    # Region 1
+    while dx < dy:
+
+        # 4-way symmetry points
+        x_points += [
+            x_center + x,
+            x_center - x,
+            x_center + x,
+            x_center - x
+        ]
+
+        y_points += [
+            y_center + y,
+            y_center + y,
+            y_center - y,
+            y_center - y
+        ]
+
+        if d1 < 0:
+            x += 1
+            dx = dx + (2 * b2)
+            d1 = d1 + dx + b2
+        else:
+            x += 1
+            y -= 1
+            dx = dx + (2 * b2)
+            dy = dy - (2 * a2)
+            d1 = d1 + dx - dy + b2
+
+    # Decision parameter for Region 2
+    d2 = (
+        b2 * (x + 0.5) * (x + 0.5)
+        + a2 * (y - 1) * (y - 1)
+        - a2 * b2
+    )
+
+    # Region 2
+    while y >= 0:
+
+        # 4-way symmetry points
+        x_points += [
+            x_center + x,
+            x_center - x,
+            x_center + x,
+            x_center - x
+        ]
+
+        y_points += [
+            y_center + y,
+            y_center + y,
+            y_center - y,
+            y_center - y
+        ]
+
+        if d2 > 0:
+            y -= 1
+            dy = dy - (2 * a2)
+            d2 = d2 + a2 - dy
+        else:
+            x += 1
+            y -= 1
+            dx = dx + (2 * b2)
+            dy = dy - (2 * a2)
+            d2 = d2 + dx - dy + a2
+
+    plt.scatter(x_points, y_points, color='purple', s=10)
+    plt.gca().set_aspect('equal')
+    plt.title('Midpoint Ellipse Algorithm')
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.grid()
+    plt.show()
+
+
+# Example: Center (50, 50), a = 30, b = 15
+midpoint_ellipse(50, 50, 30, 15)

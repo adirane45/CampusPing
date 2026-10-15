@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jupyter Notebook - Error</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 25px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+        }
+
+        .notebook {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .notebook-header {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            color: #f37726;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .notebook-header h1 {
+            font-size: 21px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        .error-cell {
+            display: flex;
+            background: white;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .prompt {
+            width: 85px;
+            min-width: 85px;
+            padding: 15px 8px;
+            text-align: right;
+            color: #c7254e;
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+
+        .error-content {
+            flex: 1;
+            padding: 15px;
+            border-left: 1px solid #ddd;
+            overflow-x: auto;
+        }
+
+        .error-title {
+            color: #b00020;
+            font-family: monospace;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .error-message {
+            font-family: monospace;
+            color: #333;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .section-title {
+            margin: 30px 0 15px;
+            font-size: 20px;
+            font-weight: normal;
+        }
+
+        .file-cell {
+            display: flex;
+            background: white;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .file-prompt {
+            width: 85px;
+            min-width: 85px;
+            padding: 15px 8px;
+            text-align: right;
+            color: #777;
+            font-family: monospace;
+            box-sizing: border-box;
+        }
+
+        .file-content {
+            flex: 1;
+            padding: 12px 16px;
+            border-left: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow-wrap: anywhere;
+        }
+
+        .file-icon {
+            font-size: 22px;
+        }
+
+        .file-content a {
+            color: #0759a5;
+            text-decoration: none;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .file-content a:hover {
+            color: #f37726;
+            text-decoration: underline;
+        }
+
+        .notebook-footer {
+            margin-top: 30px;
+            padding: 15px;
+            background: white;
+            border: 1px solid #ccc;
+            color: #666;
+            font-size: 13px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .prompt,
+            .file-prompt {
+                width: 55px;
+                min-width: 55px;
+                padding: 12px 5px;
+                font-size: 11px;
+            }
+
+            .file-content {
+                padding: 12px 10px;
+            }
+
+            .notebook-header h1 {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="notebook">
+
+    <!-- Jupyter-style header -->
+    <header class="notebook-header">
+        <div class="logo">◉</div>
+        <h1>Jupyter Notebook</h1>
+    </header>
+
+    <!-- Notebook error output -->
+    <div class="error-cell">
+        <div class="prompt">Out[1]:</div>
+
+        <div class="error-content">
+            <div class="error-title">
+                Error: Notebook execution failed
+            </div>
+
+            <div class="error-message">An unexpected error occurred while
+rendering the notebook.
+
+Please select a file below to continue.</div>
+        </div>
+    </div>
+
+    <!-- Files between the error and footer -->
+    <h2 class="section-title">Available Files</h2>
+
+    <div class="file-cell">
+        <div class="file-prompt">In [1]:</div>
+        <div class="file-content">
+            <span class="file-icon">📄</span>
+            <a href="%231%20DDA%20LINE%20DROWING%20ALGORITHM.txt">
+                #1 DDA LINE DROWING ALGORITHM.txt
+            </a>
+        </div>
+    </div>
+
+    <div class="file-cell">
+        <div class="file-prompt">In [2]:</div>
+        <div class="file-content">
+            <span class="file-icon">📄</span>
+            <a href="%233%20ellipse%20drowing%20alorithm.txt">
+                #3 ellipse drowing alorithm.txt
+            </a>
+        </div>
+    </div>
+
+    <div class="file-cell">
+        <div class="file-prompt">In [3]:</div>
+        <div class="file-content">
+            <span class="file-icon">📄</span>
+            <a href="2.%20bresenham%20drowing%20LGORITHM.txt">
+                2. bresenham drowing LGORITHM.txt
+            </a>
+        </div>
+    </div>
+
+    <div class="file-cell">
+        <div class="file-prompt">In [4]:</div>
+        <div class="file-content">
+            <span class="file-icon">📄</span>
+            <a href="2D.txt">2D.txt</a>
+        </div>
+    </div>
+
+    <div class="file-cell">
+        <div class="file-prompt">In [5]:</div>
+        <div class="file-content">
+            <span class="file-icon">📄</span>
+            <a href="3D.txt">3D.txt</a>
+        </div>
+    </div>
+
+    <div class="file-cell">
+        <div class="file-prompt">In [6]:</div>
+        <div class="file-content">
+            <span class="file-icon">📄</span>
+            <a href="Circle.txt">Circle.txt</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="notebook-footer">
+        Jupyter Notebook | File Directory | 6 files available
+    </footer>
+
+</div>
+
+</body>
+</html>

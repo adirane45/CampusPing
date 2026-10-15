@@ -1,0 +1,43 @@
+2. bresenham drowing LGORITHM
+
+import matplotlib.pyplot as plt
+
+# Starting and ending points
+x1, y1 = 2, 3
+x2, y2 = 8, 6
+
+# Calculate differences
+dx = x2 - x1
+dy = y2 - y1
+
+# Initial decision parameter
+p = 2 * dy - dx
+
+x = x1
+y = y1
+
+x_points = []
+y_points = []
+
+# Bresenham Algorithm
+for i in range(dx + 1):
+    x_points.append(x)
+    y_points.append(y)
+
+    if p < 0:
+        x = x + 1
+        p = p + 2 * dy
+    else:
+        x = x + 1
+        y = y + 1
+        p = p + 2 * dy - 2 * dx
+
+# Plot the line
+plt.plot(x_points, y_points, 'bo-')
+
+plt.xlabel("X-axis")
+plt.ylabel("Y-axis")
+plt.title("Bresenham Line Drawing Algorithm")
+plt.grid(True)
+
+plt.show()

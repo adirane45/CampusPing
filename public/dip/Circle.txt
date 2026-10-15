@@ -1,0 +1,38 @@
+import matplotlib.pyplot as plt
+
+def draw_circle_midpoint(xc, yc, r):
+    x = 0
+    y = r
+    d = 1 - r
+
+    x_points = []
+    y_points = []
+
+    while x <= y:
+        # All 8 octants using symmetry
+        x_points += [
+            xc + x, xc - x, xc + x, xc - x,
+            xc + y, xc - y, xc + y, xc - y
+        ]
+
+        y_points += [
+            yc + y, yc + y, yc - y, yc - y,
+            yc + x, yc + x, yc - x, yc - x
+        ]
+
+        x += 1
+
+        if d < 0:
+            d = d + 2 * x + 1
+        else:
+            y -= 1
+            d = d + 2 * (x - y) + 1
+
+    plt.scatter(x_points, y_points, color='green', s=10)
+    plt.gca().set_aspect('equal')
+    plt.title('Midpoint (Bresenham) Circle Drawing')
+    plt.show()
+
+
+# Example: center at (50,50) with radius 20
+draw_circle_midpoint(50, 50, 20)
