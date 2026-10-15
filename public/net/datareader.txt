@@ -1,0 +1,151 @@
+CREATE DATABASE CollegeDB;
+GO
+USE CollegeDB;
+GO
+
+CREATE TABLE Courses (
+    CourseId INT PRIMARY KEY,
+    CourseName VARCHAR(50)
+);
+
+CREATE TABLE Students (
+    StudentId INT PRIMARY KEY,
+    StudentName VARCHAR(50),
+    CourseId INT REFERENCES Courses(CourseId)
+);
+
+INSERT INTO Courses VALUES
+(1, 'MCA'), (2, 'MSC Computer Science');
+
+INSERT INTO Students VALUES
+(101, 'Aditya', 1),
+(102, 'Rahul', 2),
+(103, 'Amit', 1);
+
+
+
+project name: WebApplication16
+Default.aspx
+
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="Default.aspx.cs"
+    Inherits="WebApplication16.Default" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>DataReader and DataSet Demo</title>
+</head>
+<body>
+<form id="form1" runat="server">
+    <h2>DataReader and DataSet Demonstration</h2>
+
+    <h3>1. Simple DataReader</h3>
+    <asp:GridView ID="gvReader" runat="server" />
+
+    <h3>2. Complex DataReader (JOIN)</h3>
+    <asp:GridView ID="gvComplexReader" runat="server" />
+
+    <h3>3. Simple DataSet</h3>
+    <asp:GridView ID="gvDataSet" runat="server" />
+
+    <h3>4. Complex DataSet (Multiple Tables)</h3>
+    <asp:GridView ID="gvComplexDataSet" runat="server" />
+</form>
+</body>
+</html>
+
+
+aspx.cs
+
+
+using System;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace WebApplication16
+{
+    public partial class Default : System.Web.UI.Page
+    {
+        string cs = @"Data Source=(localdb)\MSSQLLocalDB;
+                      Initial Catalog=CollegeDB;
+                      Integrated Security=True";
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                SimpleReader();
+                ComplexReader();
+                SimpleDataSet();
+                ComplexDataSet();
+            }
+        }
+
+        void SimpleReader()
+        {
+            SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand(
+                "SELECT StudentId, StudentName FROM Students", con);
+
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            gvReader.DataSource = dr;
+            gvReader.DataBind();
+            dr.Close();
+            con.Close();
+        }
+
+        void ComplexReader()
+        {
+            SqlConnection con = new SqlConnection(cs);
+            SqlCommand cmd = new SqlCommand(
+                "SELECT Students.StudentName, Courses.CourseName " +
+                "FROM Students INNER JOIN Courses " +
+                "ON Students.CourseId = Courses.CourseId", con);
+
+            con.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            gvComplexReader.DataSource = dr;
+            gvComplexReader.DataBind();
+            dr.Close();
+            con.Close();
+        }
+
+        void SimpleDataSet()
+        {
+            SqlConnection con = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter(
+                "SELECT * FROM Students", con);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Students");
+
+            gvDataSet.DataSource = ds.Tables["Students"];
+            gvDataSet.DataBind();
+        }
+
+        void ComplexDataSet()
+        {
+            SqlConnection con = new SqlConnection(cs);
+            SqlDataAdapter da = new SqlDataAdapter(
+                "SELECT * FROM Students; SELECT * FROM Courses", con);
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+
+            ds.Tables[0].TableName = "Students";
+            ds.Tables[1].TableName = "Courses";
+
+            DataRelation relation = new DataRelation(
+                "StudentCourse",
+                ds.Tables["Courses"].Columns["CourseId"],
+                ds.Tables["Students"].Columns["CourseId"]);
+
+            ds.Relations.Add(relation);
+
+            gvComplexDataSet.DataSource = ds.Tables["Students"];
+            gvComplexDataSet.DataBind();
+        }
+    }
+}
